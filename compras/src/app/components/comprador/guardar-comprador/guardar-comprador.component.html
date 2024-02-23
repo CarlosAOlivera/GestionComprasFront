@@ -1,0 +1,183 @@
+<body>
+  <main>
+    <section class="formulario">
+      <h2 class="title">Registrarse</h2>
+
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Grupo de Nombre -->
+        <fieldset class="form-group">
+          <label>Nombres</label>
+          <input type="text" class="form-control"
+            formControlName="Nombres"     
+            placeholder="Mínimo 3 caracteres"   
+            [ngClass]="{ 'is-invalid': submitted && form['Nombres'].errors }"
+          />
+          <div *ngIf="submitted && form['Nombres'].errors" class="invalid-feedback">
+            <span *ngIf="form['Nombres']?.errors?.['required']">Los Nombres son requeridos</span>
+            <span *ngIf="form['Nombres']?.errors?.['minlength']">Los Nombres deben ser mínimo de 3 caracteres</span>
+            <span *ngIf="form['Nombres']?.errors?.['maxlength']">Los Nombres deben ser de máximo de 30 caracteres</span>
+          </div>
+        </fieldset>
+
+      <!-- Grupo de Apellido -->
+        <fieldset class="form-group">
+          <label>Apellidos</label>
+          <input
+            type="text"
+            formControlName="Apellidos"
+            class="form-control"
+            placeholder="Mínimo 3 caracteres"   
+            [ngClass]="{ 'is-invalid': submitted && form['Apellidos'].errors }"
+          />
+          <div *ngIf="submitted && form['Apellidos'].errors" class="invalid-feedback">
+            <span *ngIf="form['Apellidos']?.errors?.['required']">Los apellidos son requeridos</span>
+            <span *ngIf="form['Apellidos']?.errors?.['minlength']">Los apellidos deben ser mínimo de 3 caracteres</span>
+            <span *ngIf="form['Apellidos']?.errors?.['maxlength']">Los apellidos deben ser de máximo de 30 caracteres</span>
+          </div>
+        </fieldset>
+
+      <!-- Grupo de Email -->
+        <fieldset class="form-group">
+            <label>Correo electrónico</label>
+            <input
+              type="text"
+              formControlName="CorreoElectronico"
+              class="form-control"
+              placeholder="Mínimo 9 caracteres"   
+              [ngClass]="{ 'is-invalid': submitted && form['CorreoElectronico'].errors }"
+            />
+            <div *ngIf="submitted && form['CorreoElectronico'].errors" class="invalid-feedback">
+              <span *ngIf="form['CorreoElectronico']?.errors?.['required']">El Correo Electrónico son requerido</span>
+              <span *ngIf="form['CorreoElectronico']?.errors?.['minlength']">El Correo Electrónico debe ser mínimo de 9 caracteres</span>
+              <span *ngIf="form['CorreoElectronico']?.errors?.['maxlength']">El Correo Electrónico debe ser de máximo de 30 caracteres</span>
+            </div>
+        </fieldset>
+
+      <!-- Grupo de Tipo Documento -->
+       <!-- <fieldset class="form-group">
+            <label>Tipo De Documento</label>
+            <input
+              type="text"
+              formControlName="TipoDeDocumento"
+              class="form-control"
+              placeholder="Mínimo 3 caracteres"   
+              [ngClass]="{ 'is-invalid': submitted && form['TipoDeDocumento'].errors }"
+            />
+            <div *ngIf="submitted && form['TipoDeDocumento'].errors" class="invalid-feedback">
+              <span *ngIf="form['TipoDeDocumento']?.errors?.['required']">El Tipo de documento son requerido</span>
+              <span *ngIf="form['TipoDeDocumento']?.errors?.['minlength']">El Tipo de documento debe ser mínimo de 3 caracteres</span>
+              <span *ngIf="form['TipoDeDocumento']?.errors?.['maxlength']">El Tipo de documento debe ser de máximo de 30 caracteres</span>
+            </div>
+          </fieldset>-->
+
+      <!-- Grupo de Numero Documento -->
+        <!--<fieldset class="form-group">
+            <label>Número De Documento</label>
+            <input
+              type="text"
+              formControlName="NumeroDeDocumento"
+              class="form-control"
+              placeholder="Mínimo 5 caracteres"   
+              [ngClass]="{ 'is-invalid': submitted && form['NumeroDeDocumento'].errors }"
+            />
+            <div *ngIf="submitted && form['NumeroDeDocumento'].errors" class="invalid-feedback">
+              <span *ngIf="form['NumeroDeDocumento']?.errors?.['required']">El Tipo de documento son requerido</span>
+              <span *ngIf="form['NumeroDeDocumento']?.errors?.['minlength']">El Tipo de documento debe ser mínimo de 5 caracteres</span>
+              <span *ngIf="form['NumeroDeDocumento']?.errors?.['maxlength']">El Tipo de documento debe ser de máximo de 16 caracteres</span>
+            </div>
+          </fieldset>-->
+
+      <!-- Grupo de Contraseña -->
+          <fieldset class="form-group">
+            <label>Contraseña</label>
+            <input
+              type="password"
+              formControlName="Contrasena"
+              class="form-control"
+              placeholder="Mínimo 5 caracteres"   
+              [ngClass]="{ 'is-invalid': submitted && form['Contrasena'].errors }"
+            />
+            <div *ngIf="submitted && form['Contrasena'].errors" class="invalid-feedback">
+              <span *ngIf="form['Contrasena']?.errors?.['required']">La Contraseña es requerido</span>
+              <span *ngIf="form['Contrasena']?.errors?.['minlength']">La Contraseña debe ser mínimo de 5 caracteres</span>   
+            </div>
+          </fieldset>
+
+      <!-- Grupo de Genero -->
+
+      <!-- Drop Down Menu-->
+          <!--<fieldset class="form-group">
+            <select formControlName="Genero"
+              [ngClass]="{'is-invalid': submitted && form['Genero'].errors}"
+            >
+              <option value="Masculino" selected>Masculino</option>
+              <option value="Femenino" selected>Femenino</option>
+              <option value="Otro" selected>Otro</option>
+            </select>       
+            <div *ngIf="submitted && form['Genero'].errors" class="invalid-feedback">
+              <span *ngIf="form['Genero']?.errors?.['required']">El género es requerido</span>
+            </div>
+          </fieldset>-->
+
+      <!-- Grupo de Direccion -->
+        <!--  <fieldset class="form-group">
+            <label>Dirección</label>
+            <input
+              type="text"
+              formControlName="Direccion"
+              class="form-control"
+              placeholder="Mínimo 7 caracteres"   
+              [ngClass]="{ 'is-invalid': submitted && form['Direccion'].errors }"
+            />
+            <div *ngIf="submitted && form['Direccion'].errors" class="invalid-feedback">
+              <div *ngIf="form['Direccion']?.errors?.['required']">La dirección es requerida</div>
+              <div *ngIf="form['Direccion']?.errors?.['minlength']">La dirección debe ser mínimo de 7 caracteres</div>      
+              <div *ngIf="form['Direccion']?.errors?.['maxlength']">La dirección debe ser mínimo de 30 caracteres</div>    
+            </div>
+          </fieldset>-->
+
+      <!-- Grupo de Rol -->
+        <!--  <fieldset class="form-group">
+            <label>Rol</label>
+            <input
+              type="text"
+              formControlName="Rol"
+              class="form-control"
+              placeholder="Mínimo 3 caracteres"   
+              [ngClass]="{ 'is-invalid': submitted && form['Rol'].errors }"
+            />
+            <div *ngIf="submitted && form['Rol'].errors" class="invalid-feedback">
+              <span *ngIf="form['Rol']?.errors?.['required']">El rol es requerida</span>
+              <span *ngIf="form['Rol']?.errors?.['minlength']">El rol debe ser mínimo de 3 caracteres</span>      
+              <span *ngIf="form['Rol']?.errors?.['maxlength']">El rol debe ser mínimo de 30 caracteres</span>    
+            </div>
+          </fieldset>-->
+
+      <!-- Botones-->
+        <div class="form-group">      
+          <button type="submit" class="btn btn-primary">
+            Guardar
+          </button>
+          
+          <button type="button" (click)="onReset()" class="btn btn-warning float-right">
+            Limpiar
+          </button>      
+        </div>
+        
+        <section class="login">
+          <div>
+            <span>Ya tienes cuenta?<a routerLink="/login-comprador">Login</a></span>
+          </div>
+          <!--<button type="button" routerLink="/login-comprador" class="btn btn-warning float-right">
+            Login
+          </button>-->
+        </section>
+      </form>
+
+    </section>
+
+    
+  </main>
+
+</body>

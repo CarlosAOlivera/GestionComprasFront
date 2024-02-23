@@ -1,0 +1,21 @@
+<header *ngIf="shouldDisplayNavbar">
+    <nav class="navbar">
+        <a href="#" id="menu" class="toggle-button" (click)="toggleNavbar()">
+            <span class="bar">Hombre </span>
+            <span class="bar">Mujer </span>
+            <span class="bar">Carrito </span>
+            <span class="bar">Registro</span>
+        </a>
+        <div class="logo">
+            <a class="navbar-brand" routerLink="/home-page">Tienda-0</a>
+        </div>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="#">Hombre</a></li>
+                <li><a href="#">Mujer</a></li>
+                <li><a href="#">Carrito</a></li>
+                <li><a routerLink="/login-comprador">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>  
