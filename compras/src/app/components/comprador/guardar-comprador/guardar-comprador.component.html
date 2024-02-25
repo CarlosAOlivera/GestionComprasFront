@@ -49,6 +49,7 @@
             />
             <div *ngIf="submitted && form['CorreoElectronico'].errors" class="invalid-feedback">
               <span *ngIf="form['CorreoElectronico']?.errors?.['required']">El Correo Electrónico son requerido</span>
+              <span *ngIf="form['CorreoElectronico']?.errors?.['email']">El formato del Correo Electrónico no es válido</span>
               <span *ngIf="form['CorreoElectronico']?.errors?.['minlength']">El Correo Electrónico debe ser mínimo de 9 caracteres</span>
               <span *ngIf="form['CorreoElectronico']?.errors?.['maxlength']">El Correo Electrónico debe ser de máximo de 30 caracteres</span>
             </div>
@@ -104,6 +105,21 @@
             </div>
           </fieldset>
 
+      <!-- Grupo de Confirmar Contraseña -->
+          <fieldset class="form-group">
+            <label>Confirmar Contraseña</label>
+            <input
+              type="password"
+              formControlName="ConfirmarContrasena"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && form['ConfirmarContrasena'].errors }"
+            />
+            <div *ngIf="submitted && form['ConfirmarContrasena'].errors" class="invalid-feedback">
+              <span *ngIf="form['ConfirmarContrasena'].errors['required']">Confirmar Contraseña es requerido</span>
+              <span *ngIf="form['ConfirmarContrasena'].errors['passwordMismatch']">Las contraseñas no coinciden</span>
+            </div>
+          </fieldset>
+
       <!-- Grupo de Genero -->
 
       <!-- Drop Down Menu-->
@@ -156,7 +172,7 @@
 
       <!-- Botones-->
         <div class="form-group">      
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" (click)="onSubmit()" class="btn btn-primary">
             Guardar
           </button>
           
