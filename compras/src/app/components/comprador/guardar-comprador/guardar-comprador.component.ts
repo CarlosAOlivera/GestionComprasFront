@@ -5,6 +5,8 @@ import { CompradorService } from '../../../data/comprador.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +20,9 @@ export class GuardarCompradorComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder, 
-    private compradorService: CompradorService
+    private compradorService: CompradorService,
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -106,9 +110,13 @@ export class GuardarCompradorComponent implements OnInit {
 
     this.compradorService.Guardar(this.myForm.value)
       .then((response: any) => {
+        this.toastr.success('Registro Exitoso');
+        this.myForm.reset();
+        this.router.navigate(['/login-comprador'])
         console.log('response', response);
       })
       .catch(error => {
+        this.toastr.error('Ocurrió un error al guardar los datos');
         console.error('Error:', error);
       });
 

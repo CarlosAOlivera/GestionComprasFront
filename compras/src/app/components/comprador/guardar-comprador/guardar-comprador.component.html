@@ -13,7 +13,7 @@
             placeholder="Mínimo 3 caracteres"   
             [ngClass]="{ 'is-invalid': submitted && form['Nombres'].errors }"
           />
-          <div *ngIf="form['Nombres'].errors" class="invalid-feedback">
+          <div *ngIf="form['Nombres'].touched && form['CorreoElectronico'].errors" class="invalid-feedback">
             <span *ngIf="form['Nombres']?.errors?.['required']">Los Nombres son requeridos</span>
             <span *ngIf="form['Nombres']?.errors?.['minlength']">Los Nombres deben ser mínimo de 3 caracteres</span>
             <span *ngIf="form['Nombres']?.errors?.['maxlength']">Los Nombres deben ser de máximo de 30 caracteres</span>
@@ -30,7 +30,7 @@
             placeholder="Mínimo 3 caracteres"   
             [ngClass]="{ 'is-invalid': submitted && form['Apellidos'].errors }"
           />
-          <div *ngIf="form['Apellidos'].errors" class="invalid-feedback">
+          <div *ngIf="form['Apellidos'].touched && form['CorreoElectronico'].errors" class="invalid-feedback">
             <span *ngIf="form['Apellidos']?.errors?.['required']">Los apellidos son requeridos</span>
             <span *ngIf="form['Apellidos']?.errors?.['minlength']">Los apellidos deben ser mínimo de 3 caracteres</span>
             <span *ngIf="form['Apellidos']?.errors?.['maxlength']">Los apellidos deben ser de máximo de 30 caracteres</span>

@@ -3,10 +3,10 @@ export interface IComprador {
     Nombres: string,
     Apellidos: string,
     CorreoElectronico: string, 
-    TipoDeDocumento: string,
-    NumeroDeDocumento: number,
+    //TipoDeDocumento: string,
+    //NumeroDeDocumento: number,
     Contrasena: string,
-    Genero: string,
-    Direccion: string,
-    Rol: string
+    //Genero: string,
+   // Direccion: string,
+   // Rol: string
 }

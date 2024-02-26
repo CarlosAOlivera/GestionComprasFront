@@ -11,6 +11,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { AuthInterceptor } from './data/authInterceptor';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     ReactiveFormsModule,    
     FormsModule,    
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
