@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IComprador } from '../../../data/IComprador';
-import { CompradorService } from '../../../data/comprador.service';
+import { IUsuario } from '../../../data/IUsuario';
+import { UsuarioService } from '../../../data/usuario.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -10,20 +10,19 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-guardar-comprador',
-  templateUrl: './guardar-comprador.component.html',
-  styleUrls: ['./guardar-comprador.component.css']
+  selector: 'app-guardar-usuario',
+  templateUrl: './guardar-usuario.component.html',
+  styleUrls: ['./guardar-usuario.component.css']
 })
-export class GuardarCompradorComponent implements OnInit {
+export class GuardarUsuarioComponent implements OnInit {
   myForm!: FormGroup;
   submitted = false; 
 
   constructor(
     private formBuilder: FormBuilder, 
-    private compradorService: CompradorService,
-    private toastr: ToastrService,
-    private router: Router
-  ) { }
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private toastr: ToastrService  ) { }
 
   ngOnInit(): void {
     this.iniciarFormulario();
@@ -31,17 +30,17 @@ export class GuardarCompradorComponent implements OnInit {
 
   iniciarFormulario() {
     this.myForm = this.formBuilder.group({           
-      IdComprador:['58650f7d-2495-4a2c-9092-493dc2ecda63'], // Temporary Guid
+      IdUsuario:['58650f7d-2495-4a2c-9092-493dc2ecda63'], // Temporary Guid
       Nombres: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       Apellidos: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      CorreoElectronico: ['', [Validators.required, this.emailValidator(), Validators.maxLength(30)]],
+      CorreoElectronico: ['', [Validators.required, /*this.emailValidator(),*/ Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/), Validators.minLength(5), Validators.maxLength(30)]],
     //  TipoDeDocumento: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
     //  NumeroDeDocumento: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(16)]],
       Contrasena: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.passwordValidator]],
       ConfirmarContrasena: ['', [Validators.required]],
     //  Genero: ['', [Validators.minLength(8), Validators.maxLength(9)]],
     //  Direccion: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(30)]],
-    //  Rol: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]]
+    Rol: ['Comprador']
     }, { validator: this.passwordMatcher });
   }
 
@@ -81,7 +80,7 @@ export class GuardarCompradorComponent implements OnInit {
     return null;
   }
 
-  get form() {
+  get form() { 
     return this.myForm.controls;
   }
 
@@ -108,11 +107,11 @@ export class GuardarCompradorComponent implements OnInit {
       return;
     }
 
-    this.compradorService.Guardar(this.myForm.value)
+    this.usuarioService.Guardar(this.myForm.value)
       .then((response: any) => {
         this.toastr.success('Registro Exitoso');
         this.myForm.reset();
-        this.router.navigate(['/login-comprador'])
+        this.router.navigate(['/login-usuario'])
         console.log('response', response);
       })
       .catch(error => {

@@ -17,7 +17,7 @@ export class MenuComponent {
   }
 
   shouldDisplayNavbar(): boolean {
-    const excludedRoutes = ['/login-comprador', '/guardar-comprador'];
+    const excludedRoutes = ['/login-usuario', '/guardar-usuario'];
     const currentRoute = this.router.url;
     const display = !excludedRoutes.includes(currentRoute);
     console.log(`shouldDisplayNavbar: ${display}`);

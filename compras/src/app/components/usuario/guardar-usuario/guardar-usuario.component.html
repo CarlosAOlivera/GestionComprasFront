@@ -173,20 +173,20 @@
 
       <!-- Botones-->
         <div class="form-group">      
-          <button type="submit" (click)="onSubmit()" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary">
             Guardar
           </button>
           
-          <button type="button" (click)="onReset()" class="btn btn-warning float-right">
-            Limpiar
+          <button type="button" routerLink="/home-page" class="btn btn-warning float-right">
+            Cancelar
           </button>      
         </div>
         
         <section class="login">
           <div>
-            <span>Ya tienes cuenta?<a routerLink="/login-comprador">Login</a></span>
+            <span>Ya tienes cuenta?<a routerLink="/login-usuario"> Login</a></span>
           </div>
-          <!--<button type="button" routerLink="/login-comprador" class="btn btn-warning float-right">
+          <!--<button type="button" routerLink="/login-usuario" class="btn btn-warning float-right">
             Login
           </button>-->
         </section>

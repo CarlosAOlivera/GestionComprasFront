@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GuardarCompradorComponent } from '../app/components/comprador/guardar-comprador/guardar-comprador.component';
-import { LoginCompradorComponent } from '../app/components/comprador/login-comprador/login-comprador.component';
+import { GuardarUsuarioComponent } from './components/usuario/guardar-usuario/guardar-usuario.component';
+import { LoginUsuarioComponent } from '../app/components/usuario/login-usuario/login-usuario.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { ProductosComponent } from './components/productos/productos.component';
 
 const routes: Routes = [
-  { path: 'guardar-comprador', component: GuardarCompradorComponent },
-  { path: 'login-comprador', component: LoginCompradorComponent },
+  { path: 'guardar-usuario', component: GuardarUsuarioComponent },
+  { path: 'login-usuario', component: LoginUsuarioComponent },
+  { path: 'dashboard', component: AdminDashboardComponent },
+  { path: 'productos', component: ProductosComponent},
   { path: '', component: HomePageComponent }, 
-  { path: '**', redirectTo: '', pathMatch: 'full' } 
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
-export interface IComprador {
-    IdComprador: string;
+export interface IUsuario {
+    IdUsuario: string;
     Nombres: string,
     Apellidos: string,
     CorreoElectronico: string, 
@@ -7,6 +7,6 @@ export interface IComprador {
     //NumeroDeDocumento: number,
     Contrasena: string,
     //Genero: string,
-   // Direccion: string,
-   // Rol: string
+    //Direccion: string,
+    Rol: string
 }
