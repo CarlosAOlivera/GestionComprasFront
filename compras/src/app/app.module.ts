@@ -18,6 +18,8 @@ import { HombreComponent } from './components/hombre/hombre.component';
 import { MujerComponent } from './components/mujer/mujer.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { ProductosComponent } from './components/productos/productos.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { ProductosComponent } from './components/productos/productos.component';
     MujerComponent,
     CarritoComponent,
     ProductosComponent,
+    SearchResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { ProductosComponent } from './components/productos/productos.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgbModule,
     ToastrModule.forRoot(),
   ],
   providers: [{

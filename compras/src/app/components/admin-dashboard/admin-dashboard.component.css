@@ -5,11 +5,11 @@
   }
   
   header {
-    position: relative;
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 0;
     background: #232f3e;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
     width: 100%;
@@ -142,9 +142,8 @@
     margin-left: 200px;
   }
   
-  /*.background {
-    background-image: url(../img/background.png);
-    background-size: auto;
+  .background {
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -152,5 +151,5 @@
     height: 100vh;
     z-index: -1;
     position: relative;
-  }*/
+  }
   

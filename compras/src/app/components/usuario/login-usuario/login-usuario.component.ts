@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class LoginUsuarioComponent implements OnInit {
   myForm!: FormGroup;    
   submitted = false; 
-  //router: any;
+ 
   passwordValidator: any | string;
   loginError: string | undefined;
 
@@ -32,8 +32,8 @@ export class LoginUsuarioComponent implements OnInit {
 
   iniciarFormulario(){
     this.myForm = this.formBuilder.group({                
-      CorreoElectronico: ['', [Validators.required, Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*\.\w{2,4}$/), Validators.maxLength(30)]],
-      Contrasena: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30) ]],
+      CorreoElectronico: ['', [Validators.required, Validators.email, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/), Validators.minLength(5), Validators.maxLength(30)]],
+      Contrasena: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
     });
   }
   /*emailValidator(): any | string {
@@ -56,24 +56,26 @@ export class LoginUsuarioComponent implements OnInit {
     this.loginError = '';
 
     if (this.myForm.invalid) {
-      console.log('Error')  
-      this.toastr.error('Por favor, completa el formulario correctamente.')        
+      console.log('Error');  
+      this.toastr.error('Por favor, completa el formulario correctamente.');        
       return;
     }     
     
-    this.usuarioService.Login(this.myForm.value).then((response: any) => {
-      console.log('response', response.result);               
-      localStorage.setItem('token', response.result);
-      this.router.navigate(['/'])
-    })
-    .catch((error: any) => {
-      if(error.status === 401) {
-        this.loginError = 'Correo electronico o contraseña incorrectos.';
-      } else {
-        this.loginError = 'Ocurrió un error al intentar iniciar sesión.';
-      }
-      this.toastr.error(this.loginError);
-      console.error('Error: ', error);
-    })                  
-  }  
+    this.usuarioService.Login(this.myForm.value).subscribe({
+      next: (response: any) => {
+        console.log('response', response.result);               
+        localStorage.setItem('token', response.result);
+        this.router.navigate(['/']);
+      },
+      error: (error: any) => {
+        if(error.status === 401) {
+          this.loginError = 'Correo electronico o contraseña incorrectos.';
+        } else {
+          this.loginError = 'Ocurrió un error al intentar iniciar sesión.';
+        }
+        this.toastr.error(this.loginError);
+        console.error('Error: ', error);
+      }                  
+    });
+  }
 }

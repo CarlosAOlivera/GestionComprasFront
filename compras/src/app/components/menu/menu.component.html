@@ -6,16 +6,24 @@
             <span class="bar">Carrito </span>
             <span class="bar">Registro</span>
         </a>
-        <div class="logo">
-            <a class="navbar-brand" routerLink="/home-page">Tienda-0</a>
-        </div>
-        <div class="navbar-links">
+        <section class="logo">
+            <a class="navbar-brand" routerLink="/home-page">E-Store</a>
+        </section>
+
+        <section class="search-bar">
+            <form class="d-flex" (submit)="buscarProducto(searchQuery.value)">
+              <input #searchQuery class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </section>
+
+        <section class="navbar-links">
             <ul>
-                <li><a href="#">Hombre</a></li>
-                <li><a href="#">Mujer</a></li>
-                <li><a href="#">Carrito</a></li>
+                <li><a routerLink="/hombre">Hombre</a></li>
+                <li><a routerLink="/mujer">Mujer</a></li>
+                <li><a routerLink="/carrito">Carrito</a></li>
                 <li><a routerLink="/login-usuario">Login</a></li>
             </ul>
-        </div>
+        </section>
     </nav>
 </header>  

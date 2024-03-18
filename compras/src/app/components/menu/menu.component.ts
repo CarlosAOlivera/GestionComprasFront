@@ -1,16 +1,38 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { SearchService } from '../../data/search.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
+
 export class MenuComponent {
-  constructor(private router: Router){
+  searchQuery: string = '';
+
+  constructor(
+    private router: Router,
+    private searchService: SearchService
+  ){
     console.log('MenuComponent: costructor');
   }
+
+  onSearch(): void {
+    if (this.searchQuery) {
+      this.searchService.searchProducts(this.searchQuery).subscribe({
+        next: (result) => {
+          // Ahora pasamos los resultados de búsqueda usando el estado del router
+          this.router.navigate(['/search-results'], { state: { searchResults: result } });
+        },
+        error: (error) => {
+          console.error('Error al buscar productos', error);
+        }
+      });
+    }
+  }
+  
 
   ngOnInit() {
     console.log('MenuComponent: ngOnInit');
@@ -29,6 +51,10 @@ export class MenuComponent {
     this.navbarOpen = !this.navbarOpen;
   }
 
+  buscarProducto(query: string): void {
+    console.log('Buscando:', query);
+    this.router.navigate(['/search-results'], { queryParams: { q: query } });
+  }
 
   /*    logout() {
     localStorage.removeItem("id_token");

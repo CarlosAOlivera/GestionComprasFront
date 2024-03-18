@@ -1,1 +1,39 @@
-<p>productos works!</p>
+<section *ngIf="products.length > 0; else noProductsTemplate" class="product-container">
+  <article class="product-card" *ngFor="let product of products">
+    <img class="product-image" [src]="product.urlImagen" alt="{{ product.nombre }}">
+    <header>
+      <h3 class="product-title">{{ product.nombre }}</h3>
+    </header>
+    <p class="product-description">{{ product.descripcion }}</p>
+    <footer class="product-footer">
+      <p class="product-price">${{ product.valor }}</p>
+      <!-- Añade aquí más detalles si es necesario -->
+    </footer>
+    <button type="button" class="btn btn-info" (click)="openModal(product, modalContent)">
+      Ver detalles
+    </button>
+  </article>
+</section>
+
+<!-- Modal -->
+<ng-template #modalContent let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">{{ selectedProduct?.nombre }}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- Detalles del producto -->
+    <img [src]="selectedProduct?.urlImagen" alt="{{ selectedProduct?.nombre }}" class="img-fluid">
+    <p>{{ selectedProduct?.descripcion }}</p>
+    <!-- Más detalles -->
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+<ng-template #noProductsTemplate>
+  <p>No hay productos más buscados para mostrar.</p>
+</ng-template>

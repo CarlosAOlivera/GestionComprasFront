@@ -46,7 +46,7 @@ body {
 .form-group {
     position: relative;
     border-bottom: 2px solid silver;
-    margin: 30px 0;
+    margin: 10px 0;
 }
 
 .form-group input[type="text"],
@@ -61,12 +61,12 @@ outline: none;
 }
 
 .form-group label {
-    position: relative;
+    position: absolute;
     top: 50%;
     left: 5px;
-    color: rgba(46, 40, 40, 0.685);
-    transform: translate(-50%);
-    font-size: 16px;
+    color: rgba(46, 40, 40, 0.351);
+    /*transform: translate(-50%);*/
+    font-size: 18px;
     pointer-events: none;
     transition: .5s;
 }

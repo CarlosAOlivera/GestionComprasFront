@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './mujer.component.css'
 })
 export class MujerComponent {
+products: any;
 
 }
