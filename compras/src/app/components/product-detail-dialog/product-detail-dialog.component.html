@@ -1,0 +1,20 @@
+<section mat-dialog-content class="product-dialog-content">
+    <div class="product-dialog-image">
+        <img [src]="data.product.urlImagen" alt="{{ data.product.nombre }}" class="img-fluid">
+    </div>
+    <aside class="product-dialog-info">
+        <h3>{{ data.product.nombre }}</h3>
+        <p>{{ data.product.descripcion }}</p>
+        <p><strong>Precio:</strong> ${{ data.product.valor }}</p>
+        <p>{{data.product.color}}</p>
+        <p>{{data.product.cantidad}}</p>
+        <p>{{data.product.talla}}</p>
+        <p>{{data.product.paraSexo}}</p>
+    <!-- Añadir más información aquí -->
+    </aside>
+</section>
+<section mat-dialog-actions class="product-dialog-actions" align="end">
+    <button mat-button (click)="addToCart(data.product)">Añadir al Carrito</button>
+</section>
+
+
