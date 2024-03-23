@@ -30,7 +30,7 @@
             placeholder="Mínimo 3 caracteres"   
             [ngClass]="{ 'is-invalid': submitted && form['Apellidos'].errors }"
           />
-          <div *ngIf="form['Apellidos'].touched && form['CorreoElectronico'].errors" class="invalid-feedback">
+          <div *ngIf="form['Apellidos'].touched && form['Apellidos'].errors" class="invalid-feedback">
             <span *ngIf="form['Apellidos']?.errors?.['required']">Los apellidos son requeridos</span>
             <span *ngIf="form['Apellidos']?.errors?.['minlength']">Los apellidos deben ser mínimo de 3 caracteres</span>
             <span *ngIf="form['Apellidos']?.errors?.['maxlength']">Los apellidos deben ser de máximo de 30 caracteres</span>
