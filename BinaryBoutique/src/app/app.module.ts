@@ -58,7 +58,12 @@ import { MatCardModule } from '@angular/material/card';
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
-    ToastrModule.forRoot(),
+
+    ToastrModule.forRoot({
+      timeOut: 3000, 
+      positionClass: 'toast-bottom-right', 
+      preventDuplicates: true, 
+    }),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -66,5 +71,7 @@ import { MatCardModule } from '@angular/material/card';
     multi: true
   }],
   bootstrap: [AppComponent]
+
+
 })
 export class AppModule { }

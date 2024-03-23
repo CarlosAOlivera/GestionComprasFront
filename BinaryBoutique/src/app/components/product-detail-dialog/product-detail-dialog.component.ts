@@ -1,6 +1,8 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { CartService } from '../../data/cart.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-product-detail-dialog',
@@ -16,12 +18,14 @@ export class ProductDetailDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ProductDetailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastr: ToastrService
   ) {}
 
   addToCart(product: any): void {
     this.cartService.addToCart(product);
     this.dialogRef.close();
+    this.toastr.success('Producto añadido al carrito:', product);
   }
 
   onCloseClick(): void {
