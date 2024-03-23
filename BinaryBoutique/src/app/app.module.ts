@@ -22,6 +22,11 @@ import { ProductDetailDialogComponent } from './components/product-detail-dialog
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -48,6 +53,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCardModule,
     ToastrModule.forRoot(),
   ],
   providers: [{

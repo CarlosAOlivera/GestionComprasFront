@@ -1,117 +1,66 @@
-body {
-    height: 200vh;
-    margin-top: 10;
-    padding: 0;
-    font-family: Montserrat, sans-serif;
-}
-
-.title {
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .login-card {
+    max-width: 400px;
+    width: 100%;
+    margin: 16px;
+    /* Asegúrate de que el card tiene espacio alrededor en dispositivos más pequeños */
+  }
+  
+  .full-width-input {
+    width: 100%;
+  }
+  
+  mat-card-header {
+    justify-content: center;
+  }
+  
+  mat-card-actions {
+    justify-content: space-between;
+  }
+  
+  .registro {
     text-align: center;
-    position: relative;
-    padding: 20px 0 20px 0;
-    /*border: 1px solid silver;*/
-}
-
-.formulario {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,  -50%);
-    width: 400px;
-    background: white;
-    border: solid silver;
-    border-radius: 10px;
-}
-
-.formulario form {
-    padding: 0 40px;
-    box-sizing: border-box;
-}
-
-.form-group {
-    position: relative;
-    border-bottom: 2px solid silver;
-    margin: 30px 0;
-}
-
-.form-group input[type="text"],
-.form-group input[type="password"] {
-width: 100%;
-padding: 0 5px;
-height: 40px;
-font-size: 10px;
-border: none;
-background: none;
-outline: none;
-}
-
-.form-group label {
-    position: relative;
-    top: 50%;
-    left: 5px;
-    color: rgba(46, 40, 40, 0.685);
-    transform: translate(-50%);
-    font-size: 16px;
-    pointer-events: none;
-    transition: .5s;
-}
-
-.form-group input[type="text"]:focus,
-.form-group input[type="password"]:focus {
-    top: -5px;
-    color: rgb(37, 35, 35);
-    /*border-color: #ff866e;*/
-}
-
-::placeholder {
-    color: silver;
-}
-
-.form-group .invalid-feedback {
-color: red;
-font-size: 14px;
-}
-
-.btn {
-width: 100%;
-padding: 10px;
-margin-top: 10px;
-border: none;
-background: rgba(247, 202, 0);
-border-radius: 4px;
-font-size: 16px;
-color: white;
-cursor: pointer;
-transition: background 0.3s;
-}
-
-.btn:hover {
-background: rgb(182, 149, 2);
-}
-
-.btn-warning.float-right {
-background: #ff9886;
-color: white;
-margin-bottom: 20px;
-}
-
-.btn-warning:hover {
-    background: #f75d42;
-}
-
-.registro {
-    padding: auto;
-    margin: 20px;
-}
-
-fieldset {
-border: none;
-margin: o;
-padding: 0;
-}
-
-.invalid-feedback {
-color: red;
-font-size: 14px;
-}
-
+    margin-top: 20px;
+  }
+  
+  .alert {
+    margin-top: 20px;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .login-card {
+      margin: 8px;
+      max-width: 350px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .login-card {
+      margin: 0 auto;
+      max-width: 320px;
+      padding: 0.5rem;
+    }
+    
+    .registro, .alert {
+      margin-top: 10px;
+    }
+    
+    mat-card-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    button.mat-button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

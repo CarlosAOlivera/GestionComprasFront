@@ -1,63 +1,52 @@
 <body>
-  <main>
-    <h2 class="title">Login</h2>
+  <main class="main-container">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
 
-    <div class="formulario">
-      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-
-        <div class="form-group">
-            <label>Correo electrónico</label>
-            <input
-              type="text"
-              formControlName="CorreoElectronico"
-              class="form-control"
-              placeholder="Mínimo 9 caracteres"   
-              [ngClass]="{ 'is-invalid': submitted && form['CorreoElectronico'].errors }"
-            />
-            <div *ngIf="submitted && form['CorreoElectronico'].errors" class="invalid-feedback">
+      <mat-card-content>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          
+          <mat-form-field appearance="outline" class="full-width-input">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput formControlName="CorreoElectronico" placeholder="Mínimo 9 caracteres">
+            <mat-error *ngIf="submitted && form['CorreoElectronico'].errors">
               <div *ngIf="form['CorreoElectronico']?.errors?.['required']">El Correo Electrónico es requerido</div>
               <div *ngIf="form['CorreoElectronico']?.errors?.['pattern']">El formato del Correo Electrónico no es válido</div>
               <div *ngIf="form['CorreoElectronico']?.errors?.['minlength']">El Correo Electrónico debe ser mínimo de 9 caracteres</div>
               <div *ngIf="form['CorreoElectronico']?.errors?.['maxlength']">El Correo Electrónico debe ser de máximo de 30 caracteres</div>
-            </div>
-        </div>
+            </mat-error>
+          </mat-form-field>
 
-        <div class="form-group">
-            <label>Contraseña</label>
-            <input
-              type="password"
-              formControlName="Contrasena"
-              class="form-control"
-              placeholder="Mínimo 5 caracteres"   
-              [ngClass]="{ 'is-invalid': submitted && form['Contrasena'].errors }"
-            />
-            <div *ngIf="form['Contrasena'].touched && form['Contrasena'].errors" class="invalid-feedback">
+          <mat-form-field appearance="outline" class="full-width-input">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="password" formControlName="Contrasena" placeholder="Mínimo 5 caracteres">
+            <mat-error *ngIf="form['Contrasena'].touched && form['Contrasena'].errors">
               <div *ngIf="form['Contrasena']?.errors?.['required']">La Contraseña es requerido</div>
               <div *ngIf="form['Contrasena']?.errors?.['minlength']">La Contraseña debe ser mínimo de 5 caracteres</div>   
               <div *ngIf="form['Contrasena'].errors['passwordStrength']">La contraseña debe contener letras mayúsculas, letras minúsculas y números.</div>
-            </div>
-        </div>
+            </mat-error>
+          </mat-form-field>
 
-        <div class="form-group">      
-            <button type="submit" class="btn btn-primary">
-                Login
-            </button>
-          
-            <button type="button" routerLink="/home-page" class="btn btn-warning float-right">
-                Cancelar
-            </button>      
-        </div>    
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit">Login</button>
+            <button mat-button color="warn" routerLink="/home-page">Cancelar</button>
+          </mat-card-actions>
 
-        <div *ngIf="loginError" class="alert alert-danger">
-          {{ loginError }}
-        </div>
+          <div *ngIf="loginError" class="alert alert-danger">
+            {{ loginError }}
+          </div>
 
+        </form>
+      </mat-card-content>
+
+      <mat-card-footer>
         <div class="registro">
-          <span>No tienes cuenta?<a routerLink="/guardar-usuario"> Registrate</a></span>
+          <span>No tienes cuenta?<a routerLink="/guardar-usuario"> Regístrate</a></span>
         </div>
-
-      </form>
-    </div>
+      </mat-card-footer>
+    </mat-card>
   </main>
 </body>
 

@@ -10,14 +10,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-usuario',
   templateUrl: './login-usuario.component.html',
-  styleUrl: './login-usuario.component.css'
+  styleUrls: ['./login-usuario.component.css']
 })
 export class LoginUsuarioComponent implements OnInit {
   myForm!: FormGroup;    
   submitted = false; 
  
   passwordValidator: any | string;
-  loginError: string | undefined;
+  loginError!: string;
+  password!: string;
 
   constructor(
     private formBuilder: FormBuilder, 

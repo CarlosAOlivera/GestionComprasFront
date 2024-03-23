@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 export class GuardarUsuarioComponent implements OnInit {
   myForm!: FormGroup;
   submitted = false; 
+hideConfirm: any;
+hide: any;
 
   constructor(
     private formBuilder: FormBuilder, 
