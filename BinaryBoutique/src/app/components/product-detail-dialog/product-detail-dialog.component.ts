@@ -8,6 +8,10 @@ import { CartService } from '../../data/cart.service';
   styleUrl: './product-detail-dialog.component.css'
 })
 export class ProductDetailDialogComponent {
+  addToWishlist(product: any): void {
+    console.log('Producto añadido a la lista de deseos', product);
+    throw new Error('Method not implemented.');
+}
 
   constructor(
     public dialogRef: MatDialogRef<ProductDetailDialogComponent>,

@@ -14,6 +14,7 @@
     </aside>
 </section>
 <section mat-dialog-actions class="product-dialog-actions" align="end">
-    <button mat-button (click)="addToCart(data.product)">Añadir al Carrito</button>
+  <button mat-button (click)="addToWishlist(data.product)">Añadir a mi lista</button>
+  <button mat-button (click)="addToCart(data.product)" class="add-to-cart-btn">Añadir al Carrito</button>
 </section>
 

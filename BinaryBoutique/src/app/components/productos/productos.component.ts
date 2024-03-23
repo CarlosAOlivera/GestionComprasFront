@@ -24,7 +24,8 @@ selectedProduct: any;
 
   openDialog(product: Product): void {
     this.dialog.open(ProductDetailDialogComponent, {
-      width: '250px',
+      width: '800px',
+      maxHeight: '90vh',
       data: { product: product }
     });
   }
