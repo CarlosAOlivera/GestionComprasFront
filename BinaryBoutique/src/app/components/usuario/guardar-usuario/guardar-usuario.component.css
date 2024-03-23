@@ -1,0 +1,131 @@
+body {
+    height: 200vh;
+    margin-top: 10;
+    padding: 0;
+    font-family: Montserrat, sans-serif;
+    /*background: linear-gradient(150deg, #6EE6FF, #ff9886);*/
+    /*display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;*/
+}
+  
+/*.main {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}*/
+
+.formulario {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,  -50%);
+    width: 400px;
+    background: white;
+    border: solid silver;
+    border-radius: 10px;
+}
+
+.formulario .title {
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+.formulario form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.form-group {
+    position: relative;
+    border-bottom: 2px solid silver;
+    margin: 30px 0;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+width: 100%;
+padding: 0 5px;
+height: 40px;
+font-size: 10px;
+border: none;
+background: none;
+outline: none;
+}
+
+.form-group label {
+    position: relative;
+    top: 50%;
+    left: 5px;
+    color: rgba(46, 40, 40, 0.685);
+    transform: translate(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
+    top: -5px;
+    color: rgb(37, 35, 35);
+    /*border-color: #ff866e;*/
+}
+
+::placeholder {
+    color: silver;
+}
+
+.form-group .invalid-feedback {
+color: red;
+font-size: 14px;
+}
+
+.btn {
+width: 100%;
+padding: 10px;
+margin-top: 10px;
+border: none;
+background: rgba(247, 202, 0);
+border-radius: 4px;
+font-size: 16px;
+color: white;
+cursor: pointer;
+transition: background 0.3s;
+}
+
+.btn:hover {
+background: rgb(182, 149, 2);
+}
+
+.btn-warning.float-right {
+background: #ff9886;
+color: white;
+margin-bottom: 20px;
+}
+
+.btn-warning:hover {
+    background: #f75d42;
+}
+
+.login {
+    padding: auto;
+    margin: 20px;
+}
+
+fieldset {
+border: none;
+margin: o;
+padding: 0;
+}
+
+.invalid-feedback {
+color: red;
+font-size: 14px;
+}

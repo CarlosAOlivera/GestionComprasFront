@@ -1,0 +1,23 @@
+.product-dialog-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .product-dialog-image {
+    flex: 1; 
+  }
+  
+  .product-dialog-info {
+    flex: 2; 
+    padding-left: 20px; 
+  }
+  
+  .product-dialog-actions {
+    display: flex;
+    justify-content: space-between; 
+  }
+  
+  .flex-spacer {
+    flex: 1 1 auto; 
+  }
+  
