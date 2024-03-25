@@ -1,13 +1,13 @@
 .logo {
     position: relative;
-    margin-right: auto;
+    margin-right: 30px;
     padding-right: 50px;
 }
   
 .logo .navbar-brand {
     display: block;
     padding-left: 10px;
-    font-size: 1.5em;
+    font-size: 2em;
     color: #fff;
     text-decoration: none;
 }
@@ -21,11 +21,45 @@
     margin: auto;
     justify-content: space-between;
     align-items: center;
-    background-color: #007bff;
+    background-color: #a8dadc; 
     color: white;
     z-index: 100;
 }
-    
+
+.search-bar {
+    width: 300px;
+    height: 15px;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.search-bar::placeholder {
+    color: #999;
+}
+
+.search-bar form {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-bar input {
+    padding: 0 65px;
+    border-radius: 30px;
+    border: none;
+}
+
+.search-bar button {
+    position: absolute;
+    right: 10px;
+    border: none;
+    color: #6c757d;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: transparent;
+}
+
 .navbar-links ul {
     margin: 0;
     padding: 0;
@@ -36,171 +70,74 @@
     list-style: none;
 }
 
-.navbar-links li a {
-    text-decoration: none;
+.navbar-links li button {
+    background-color: #a8dadc;
     color: white;
-    padding: 1rem;
-    display: block;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1.25em;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-.content {
-    margin-top: 50px;
+.navbar-links li button:hover {
+    background-color: #95b2b8; 
 }
 
 @media (min-width: 769px) {
     .toggle-button {
-    display: none;
+        display: none;
     }
 }
 
 @media (max-width: 768px) {
-     .navbar-links {
+    .navbar-links {
         display: none;
         width: 100%;
     }
 
-    .navbar-links.active{
+    .navbar-links.active {
         display: flex;
     }
 
     .navbar-links ul {
-        list-style-type: none;
         flex-direction: column;
-        padding-left: 0;
         width: 100%;
     }
 
     .navbar-links li {
-        display: inline-block;
-    }
-
-    .logo .navbar-brand {
         display: block;
-        padding-left: 1px;
-        font-size: 1.5em;
-        color: #fff;
-        text-decoration: none;
-    }
-
-    .bar {
-        display: block;
-        width: 25px;
-        height: 3px;
-        background-color: #fff;
-        margin: auto;
-        transition: all 0.3s ease;
     }
 
     .toggle-button {
-    position: relative;
-    z-index: 1000;
-    text-decoration: none;
-    color: white;
-    padding: 1rem;
-    display: block;
-    width: 28px;
-    height: 30px;
-    margin: 30px auto 10px;  
-    }
-
-    .toggle-button span:after,
-    .toggle-button span:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: -9px;
-    }
-
-    .toggle-button span:after {
-        top: 9px;
-    }
-
-    .toggle-button span {
-        position: relative;
         display: block;
+        cursor: pointer;
     }
 
-    .toggle-button span,
-    .toggle-button span:after,
-    .toggle-button span:before {
-        width: 100%;
-        height: 5px;
-        background-color: #007bff;
-        transition: all 0.3s;
-        backface-visibility: hidden;
+    .toggle-button .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 5px auto;
+        transition: all 0.3s ease;
         border-radius: 2px;
     }
-
-    .toggle-button.on span {
-        background-color: transparent;
-    }
-
-    .toggle-button.on span:before {
-        transform: rotate(45deg)
-        translate(5px, 5px);
-    }
-
-    .toggle-button.on span:after {
-        transform: rotate(-45deg)
-        translate(7px, -8px);
-    }
-
-    .toggle-button.on + #menu {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    #menu {
-        position: relative;
-        color: #999;
-        width: 200px;
-        padding: 10px;
-        margin: auto;
-        text-align: center;
-        border-radius: 4px;
-        background: #007bff;
-        box-shadow: 0 1px 8px rgba(0, 0, 0, .05);
-        /* test */
-        /*opacity: 50;
-        visibility: hidden;
-        transition: opacity .4s;*/
-    }
-
-    #menu:after {
-        position: absolute;
-        top: -15px;
-        left: 95px;
-        content: "";
-        display: block;
-        border-left: 15px solid transparent;
-        border-right: 15px solid transparent;
-        border-bottom: 20px solid white;
-    }
-
-    header {
-        height: 1000px;
-    }
-
-   
 }
 
-
-
 .btn-navbar {
-    background-color: #007bff; 
+    background-color: #a8dadc; 
     color: white;
     border: none;
     padding: 1rem;
     margin: 0 0.5rem;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 1rem;
-    border-radius: 8px;
+    border-radius: 30px;
     cursor: pointer;
-    display: block;
 }
 
 .btn-navbar:hover {
-    background-color: #0056b3;
+    background-color: #95b2b8;
 }
-    
