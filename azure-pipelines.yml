@@ -10,6 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- checkout: self
 - task: NodeTool@0
   inputs:
     versionSpec: '20.x'
@@ -17,13 +18,14 @@ steps:
 
 - task: Cache@2
   inputs:
-    key: 'npm | "$(Agent.OS)" | package-lock.json'
+    key: 'npm | "$(Agent.OS)" | BinaryBoutique/package-lock.json'
     restoreKeys: |
        npm | "$(Agent.OS)"
     path: $(npm_config_cache)
   displayName: 'Cache npm'
 
 - script: |
+    cd BinaryBoutique
     npm ci
     npm run lint
     npm run test
@@ -32,6 +34,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)/dist'
+    pathToPublish: 'BinaryBoutique/dist'
     artifactName: 'webapp'
   displayName: 'Publish Build Artifacts'
