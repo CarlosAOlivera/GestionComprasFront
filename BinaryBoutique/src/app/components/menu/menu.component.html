@@ -14,16 +14,16 @@
         <section class="search-bar">
             <form class="d-flex" (submit)="buscarProducto(searchQuery.value)">
               <input #searchQuery class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-              <button class="btn btn-primary" type="submit">Search</button>
+              <button class="btn btn-primary" type="submit">Buscar</button>
             </form>
         </section>
 
         <section class="navbar-links">
             <ul>
-                <li><a routerLink="/hombre">Hombre</a></li>
-                <li><a routerLink="/mujer">Mujer</a></li>
-                <li><a routerLink="/carrito">Carrito</a></li>
-                <li><a routerLink="/login-usuario">Login</a></li>
+                <li><button routerLink="/hombre">Hombre</button></li>
+                <li><button routerLink="/mujer">Mujer</button></li>
+                <li><button routerLink="/carrito">Carrito</button></li>
+                <li><button routerLink="/login-usuario">Login</button></li>
             </ul>
         </section>
     </nav>

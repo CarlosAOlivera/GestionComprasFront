@@ -1,11 +1,10 @@
 <div *ngIf="items.length > 0; else emptyCart">
   <div *ngFor="let item of items">
     <h3>{{ item.nombre }}</h3>
-    <p>{{ item.descripcion }}</p>
-    <p>${{ item.valor }}</p>
-    <p>{{item.color}}</p>
-    <p>{{item.cantidad}}</p>
-    <p>{{item.talla}}</p>
+    <p>Descripción: {{ item.descripcion }}</p>
+    <p>Precio: ${{ item.valor }}</p>
+    <p>Color: {{item.color}}</p>
+    <p>Talla: {{item.talla}}</p>
     <p>{{item.paraSexo}}</p>
   </div>
 </div>
