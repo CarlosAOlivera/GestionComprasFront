@@ -1,0 +1,57 @@
+<main class="card-container">
+  <mat-card>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+      <mat-card-title>Registrarse</mat-card-title>
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombres</mat-label>
+          <input matInput formControlName="Nombres" placeholder="Mínimo 3 caracteres">
+          <mat-error *ngIf="form['Nombres'].hasError('required')">Los Nombres son requeridos</mat-error>
+          <mat-error *ngIf="form['Nombres'].hasError('minlength')">Los Nombres deben ser mínimo de 3 caracteres</mat-error>
+          <mat-error *ngIf="form['Nombres'].hasError('maxlength')">Los Nombres deben ser de máximo de 30 caracteres</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Apellidos</mat-label>
+          <input matInput formControlName="Apellidos" placeholder="Mínimo 3 caracteres">
+          <mat-error *ngIf="form['Apellidos'].hasError('required')">Los apellidos son requeridos</mat-error>
+          <mat-error *ngIf="form['Apellidos'].hasError('minlength')">Los apellidos deben ser mínimo de 3 caracteres</mat-error>
+          <mat-error *ngIf="form['Apellidos'].hasError('maxlength')">Los apellidos deben ser de máximo de 30 caracteres</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput formControlName="CorreoElectronico" placeholder="Mínimo 9 caracteres">
+          <mat-error *ngIf="form['CorreoElectronico'].hasError('required')">El Correo Electrónico es requerido</mat-error>
+          <mat-error *ngIf="form['CorreoElectronico'].hasError('email')">El formato del Correo Electrónico no es válido</mat-error>
+          <mat-error *ngIf="form['CorreoElectronico'].hasError('minlength')">El Correo Electrónico debe ser mínimo de 9 caracteres</mat-error>
+          <mat-error *ngIf="form['CorreoElectronico'].hasError('maxlength')">El Correo Electrónico debe ser de máximo de 30 caracteres</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="Contrasena" placeholder="Mínimo 5 caracteres">
+          <mat-error *ngIf="form['Contrasena'].hasError('required')">La Contraseña es requerida</mat-error>
+          <mat-error *ngIf="form['Contrasena'].hasError('minlength')">La Contraseña debe ser mínimo de 5 caracteres</mat-error>
+          <mat-error *ngIf="form['Contrasena'].hasError('passwordStrength')">La contraseña debe contener letras mayúsculas, letras minúsculas y números</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Confirmar Contraseña</mat-label>
+          <input matInput type="password" formControlName="ConfirmarContrasena">
+          <mat-error *ngIf="form['ConfirmarContrasena'].hasError('required')">La confirmación de la contraseña es requerida</mat-error>
+          <mat-error *ngIf="myForm.hasError('passwordMismatch')">Las contraseñas no coinciden</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+        <button mat-raised-button color="warn" routerLink="/home-page">Cancelar</button>
+      </mat-card-actions>
+      <mat-card-footer>
+        <div class="login">
+          <span>Ya tienes cuenta?<a routerLink="/login-usuario"> Login</a></span>
+        </div>
+      </mat-card-footer>
+    </form>
+  </mat-card>
+</main>

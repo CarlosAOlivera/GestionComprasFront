@@ -1,0 +1,84 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.card-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 16px auto;
+  display: block;
+}
+
+mat-card {
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: auto;
+}
+
+mat-card-content {
+  margin-top: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+button.mat-button {
+  margin-right: 1rem;
+}
+
+button.mat-primary {
+  background-color: #1976d2;
+  color: white;
+}
+
+button.mat-warn {
+  background-color: #d32f2f;
+  color: white;
+}
+
+.login {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .card-container {
+    margin: 8px;
+  }
+  
+  mat-card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  mat-card {
+    padding: 0.5rem;
+  }
+
+  button.mat-button {
+    width: 100%;
+    margin-right: 0;
+  }
+}

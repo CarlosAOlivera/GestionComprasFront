@@ -1,0 +1,66 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .login-card {
+    max-width: 400px;
+    width: 100%;
+    margin: 16px;
+    /* Asegúrate de que el card tiene espacio alrededor en dispositivos más pequeños */
+  }
+  
+  .full-width-input {
+    width: 100%;
+  }
+  
+  mat-card-header {
+    justify-content: center;
+  }
+  
+  mat-card-actions {
+    justify-content: space-between;
+  }
+  
+  .registro {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .alert {
+    margin-top: 20px;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .login-card {
+      margin: 8px;
+      max-width: 350px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .login-card {
+      margin: 0 auto;
+      max-width: 320px;
+      padding: 0.5rem;
+    }
+    
+    .registro, .alert {
+      margin-top: 10px;
+    }
+    
+    mat-card-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    button.mat-button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

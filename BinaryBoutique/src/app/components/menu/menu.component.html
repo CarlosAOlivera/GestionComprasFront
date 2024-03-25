@@ -1,0 +1,30 @@
+<header *ngIf="shouldDisplayNavbar">
+    <nav class="navbar">
+        <a href="#" id="menu" class="toggle-button" (click)="toggleNavbar()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+
+        <section class="logo">
+            <a class="navbar-brand" routerLink="/home-page">Binary Boutique</a>
+        </section>
+
+        <section class="search-bar">
+            <form class="d-flex" (submit)="buscarProducto(searchQuery.value)">
+              <input #searchQuery class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+              <button class="btn btn-primary" type="submit">Buscar</button>
+            </form>
+        </section>
+
+        <section class="navbar-links">
+            <ul>
+                <li><button routerLink="/hombre">Hombre</button></li>
+                <li><button routerLink="/mujer">Mujer</button></li>
+                <li><button routerLink="/carrito">Carrito</button></li>
+                <li><button routerLink="/login-usuario">Login</button></li>
+            </ul>
+        </section>
+    </nav>
+</header>  
