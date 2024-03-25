@@ -45,6 +45,7 @@ import { MatCardModule } from '@angular/material/card';
     FooterComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,    

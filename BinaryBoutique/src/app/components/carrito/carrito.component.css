@@ -1,0 +1,39 @@
+/* Estilos generales */
+section {
+  display: flex;
+  justify-content: space-between; /* Alinea .card y .card-total en los extremos */
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex; /* Establece un contenedor flex para alinear img y aside */
+  flex: .5;
+  margin-right: 10px; /* Espacio entre .card y .card-total */
+}
+
+.card-img-left {
+  width: 100px; /* Ajusta al tamaño de la imagen */
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.card-body {
+  display: flex; /* Establece un contenedor flex para el contenido de texto */
+  flex-direction: column; /* Organiza los elementos verticalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+}
+
+.card-total {
+  flex-basis: 200px;
+  align-self: center; /* Alinea .card-total al centro verticalmente respecto a la sección */
+}
+
+/* Ajustes adicionales para una mejor presentación */
+.card {
+  border: 1px solid #ccc; /* Borde ligero para las tarjetas */
+  padding: 10px;
+}
+
+.total {
+  padding: 10px;
+  border: 1px solid #ccc;
+}

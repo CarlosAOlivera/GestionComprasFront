@@ -5,16 +5,19 @@
     <aside class="product-dialog-info">
         <h3>{{ data.product.nombre }}</h3>
         <p>Descripción {{ data.product.descripcion }}</p>
-        <p><strong>Precio:</strong> ${{ data.product.valor }}</p>
-        <p>Color: {{data.product.color}}</p>
-        <p>Cantidad disponible: {{data.product.cantidad}}</p>
-        <p>Talla: {{data.product.talla}}</p>
         <p>{{data.product.paraSexo}}</p>
-    <!-- Añadir más información aquí -->
+        <p><strong>Precio:</strong> ${{ data.product.valor }}</p>
+        <p>Color: </p>
+        <div *ngIf="data.product.color" class="color-circle" [ngStyle]="{'background-color': data.product.color}"></div>
+        <p>Talla: {{data.product.talla}}</p> 
+        <p>Cantidad disponible: {{data.product.cantidad}}</p>
+
+        <label for="quantity">Cantidad:</label>
+        <input type="number" id="quantity" name="quantity" [(ngModel)]="quantity" min="1" max="{{ data.product.cantidad }}">
     </aside>
 </section>
 <section mat-dialog-actions class="product-dialog-actions" align="end">
   <button mat-button (click)="addToWishlist(data.product)">Añadir a mi lista</button>
-  <button mat-button (click)="addToCart(data.product)" class="add-to-cart-btn">Añadir al Carrito</button>
+  <button mat-button (click)="addToCart(data.product, quantity)" class="add-to-cart-btn">Añadir al Carrito</button>
 </section>
 
