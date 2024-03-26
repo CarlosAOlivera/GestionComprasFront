@@ -1,6 +1,7 @@
 export class Product {
     idProducto: string =''; 
     nombre: string ='';
+    marca: string ='';
     referencia: string ='';
     urlImagen?: string; 
     descripcion?: string;

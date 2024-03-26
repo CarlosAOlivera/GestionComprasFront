@@ -21,7 +21,7 @@
     margin: auto;
     justify-content: space-between;
     align-items: center;
-    background-color: #a8dadc; 
+    background-color: #4b82f0; 
     color: white;
     z-index: 100;
 }
@@ -71,7 +71,7 @@
 }
 
 .navbar-links li button {
-    background-color: #a8dadc;
+    background-color: #4b82f0;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -82,7 +82,7 @@
 }
 
 .navbar-links li button:hover {
-    background-color: #95b2b8; 
+    background-color: #560ee7; 
 }
 
 @media (min-width: 769px) {
@@ -127,7 +127,7 @@
 }
 
 .btn-navbar {
-    background-color: #a8dadc; 
+    background-color: #4b82f0; 
     color: white;
     border: none;
     padding: 1rem;
