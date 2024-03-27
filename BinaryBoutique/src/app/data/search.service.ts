@@ -24,4 +24,8 @@ export class SearchService {
   getMostSearchedProducts(): Observable<Product[]>{
     return this.http.get<Product[]>(`${this.apiUrl}/Producto/GetMasBuscados`);
   }
+
+  getProductsBySexo(sexo: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/Producto/GetBySexo/${sexo}`);
+  }
 }

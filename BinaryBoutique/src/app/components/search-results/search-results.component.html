@@ -1,8 +1,8 @@
 <section *ngIf="products?.length; else noResultsTemplate">
     <div *ngFor="let product of products">
+        <img *ngIf="product.urlImagen" [src]="product.urlImagen" alt="{{ product.nombre }}">
         <h3>{{ product.nombre }}</h3>
         <p>{{ product.descripcion }}</p>
-        <img *ngIf="product.urlImagen" [src]="product.urlImagen" alt="{{ product.nombre }}">
         <p><strong>Color:</strong> {{ product.color }}</p>
         <p><strong>Talla:</strong> {{ product.talla }}</p>
         <p><strong>Cantidad disponible:</strong> {{ product.cantidad }}</p>

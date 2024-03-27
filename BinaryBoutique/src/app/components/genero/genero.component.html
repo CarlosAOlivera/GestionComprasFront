@@ -1,0 +1,21 @@
+<section *ngIf="products.length > 0; else noProductsTemplate" class="product-container">
+    <article class="product-card" *ngFor="let product of products">
+      <img class="product-image" [src]="product.urlImagen" alt="{{ product.nombre }}">
+      <header>
+        <h3 class="product-title">{{ product.nombre }}</h3>
+      </header>
+      <p class="product-description">{{ product.descripcion }}</p>
+      <footer class="product-footer">
+        <p class="product-price">${{ product.valor }}</p>
+        <!-- Añade aquí más detalles si es necesario -->
+      </footer>
+      <button type="button" class="btn btn-info" (click)="openDialog(product)">
+        Ver detalles
+      </button>
+    </article>
+</section>
+  
+  
+  <ng-template #noProductsTemplate>
+    <p>No hay productos más buscados para mostrar.</p>
+  </ng-template>
