@@ -43,6 +43,15 @@
   margin-left: 10px; 
 }
 
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border: solid gray;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
 /* Botón Añadir al Carrito */
 .add-to-cart-btn {
   background-color: #4CAF50; 

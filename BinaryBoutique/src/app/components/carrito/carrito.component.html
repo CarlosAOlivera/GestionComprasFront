@@ -1,14 +1,21 @@
-<div *ngIf="items.length > 0; else emptyCart">
-  <div *ngFor="let item of items">
-    <h3>{{ item.nombre }}</h3>
-    <p>Descripción: {{ item.descripcion }}</p>
-    <p>Precio: ${{ item.valor }}</p>
-    <p>Color: {{item.color}}</p>
-    <p>Talla: {{item.talla}}</p>
-    <p>{{item.paraSexo}}</p>
+<section *ngIf="items.length > 0; else emptyCart">
+  <div class="card" *ngFor="let item of items">
+    <img class="card-img-left" [src]="item.product.urlImagen" alt="{{ item.nombre }}">
+    <aside class="card-body">  
+      <h5 class="card-title">Producto: {{ item.product.nombre }}</h5>
+      <p class="card-text">Cantidad: {{ item.selectedQuantity }}</p>
+      <p class="card-text">Precio unitario: ${{ item.product.valor }}</p>
+      <p class="card-text">Precio total: ${{ item.selectedQuantity * item.product.valor }}</p>
+    </aside>
   </div>
-</div>
+</section>
 
 <ng-template #emptyCart>
-  <p>El carrito está vacío.</p>
+  <p>No hay productos en el carrito.</p>
 </ng-template>
+
+<section class="card-total">
+  <aside class="total">
+    <p>Total: ${{ totalPrice }}</p>
+  </aside>
+</section>

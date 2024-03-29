@@ -27,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { GeneroComponent } from './components/genero/genero.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,10 @@ import { MatCardModule } from '@angular/material/card';
     ProductDetailDialogComponent,
     SearchResultsComponent,
     FooterComponent,
+    GeneroComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,    

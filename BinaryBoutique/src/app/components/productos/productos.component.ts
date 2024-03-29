@@ -31,12 +31,12 @@ selectedProduct: any;
   }
 
   ngOnInit(): void {
-    this.loadProducts();
+    this.loadMostSearchedProducts()
   }
 
   loadProducts(): void {
     if (this.paraSexo) {
-    this.searchService.searchMostSearchedProducts(this.paraSexo)
+    this.searchService.searchProducts(this.paraSexo)
       .subscribe(
         (products) => {
         this.products = products;

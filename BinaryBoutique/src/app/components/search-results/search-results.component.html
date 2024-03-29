@@ -1,18 +1,21 @@
-<section *ngIf="products?.length; else noResultsTemplate">
-    <div *ngFor="let product of products">
-        <h3>{{ product.nombre }}</h3>
-        <p>{{ product.descripcion }}</p>
-        <img *ngIf="product.urlImagen" [src]="product.urlImagen" alt="{{ product.nombre }}">
-        <p><strong>Color:</strong> {{ product.color }}</p>
-        <p><strong>Talla:</strong> {{ product.talla }}</p>
-        <p><strong>Cantidad disponible:</strong> {{ product.cantidad }}</p>
-        <p><strong>Precio:</strong> ${{ product.valor }}</p>
-        <p *ngIf="product.esDeLosMasBuscados"><strong>¡Uno de los más buscados!</strong></p>
-        <p><strong>Para:</strong> {{ product.paraSexo }}</p>
-    
-    </div>
+<section *ngIf="products.length > 0; else noProductsTemplate" class="product-container">
+    <article class="product-card" *ngFor="let product of products">
+      <img class="product-image" [src]="product.urlImagen" alt="{{ product.nombre }}">
+      <header>
+        <h3 class="product-title">{{ product.nombre }}</h3>
+      </header>
+      <p class="product-description">{{ product.descripcion }}</p>
+      <footer class="product-footer">
+        <p class="product-price">${{ product.valor }}</p>
+        <!-- Añade aquí más detalles si es necesario -->
+      </footer>
+      <button type="button" class="btn btn-info" (click)="openDialog(product)">
+        Ver detalles
+      </button>
+    </article>
 </section>
-
-<ng-template #noResultsTemplate>
-    <p>No se encontraron resultados para su búsqueda.</p>
-</ng-template>
+  
+  
+  <ng-template #noProductsTemplate>
+    <p>No hay productos más buscados para mostrar.</p>
+  </ng-template>

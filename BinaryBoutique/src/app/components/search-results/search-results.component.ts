@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../data/product.model';
 import { SearchService } from '../../data/search.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductDetailDialogComponent } from '../product-detail-dialog/product-detail-dialog.component';
 
 @Component({
   selector: 'app-search-results',
@@ -16,8 +18,17 @@ export class SearchResultsComponent implements OnInit {
   constructor(
     private router: Router,
     private searchService: SearchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public Dialog:MatDialog
   ) {}
+
+  openDialog(product:Product): void {
+    this.Dialog.open(ProductDetailDialogComponent), {
+      Width: '800px',
+      maxHeight: '90vh',
+      data: {                                                                                           product: product }
+    }
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {

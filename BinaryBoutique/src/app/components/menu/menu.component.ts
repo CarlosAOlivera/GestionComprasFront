@@ -53,6 +53,8 @@ export class MenuComponent {
 
   buscarProducto(query: string): void {
     console.log('Buscando:', query);
+    this.searchQuery = query;
+    this.onSearch();
     this.router.navigate(['/search-results'], { queryParams: { q: query } });
   }
 
