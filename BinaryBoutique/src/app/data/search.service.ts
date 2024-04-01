@@ -12,18 +12,18 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
-  searchProducts(query: string): Observable<Product[]> {
+  getProducts(query: string): Observable<Product[]> {
     const url = `${this.apiUrl}/Product/Search`;
     return this.http.get<Product[]>(`${this.apiUrl}/Producto/Search`,{params: {query} });
   }
 
-  searchMostSearchedProducts(paraSexo: string): Observable<Product[]>{
+  getMostSearchedProducts(paraSexo: string): Observable<Product[]>{
     return this.http.get<Product[]>(`${this.apiUrl}/Producto/GetMasBuscados/${paraSexo}`);
   }
 
-  getMostSearchedProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.apiUrl}/Producto/GetMasBuscados`);
-  }
+  //getMostSearchedProducts(): Observable<Product[]>{
+  //  return this.http.get<Product[]>(`${this.apiUrl}/Producto/GetMasBuscados`);
+  //}
 
   getProductsBySexo(sexo: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}/Producto/GetBySexo/${sexo}`);

@@ -32,7 +32,8 @@ export class GeneroComponent implements OnInit {
   }
 
   loadProductsBySexo(): void {
-    this.searchService.searchProducts(this.paraSexo)
+    //this.searchService.searchProducts(this.paraSexo)
+    this.searchService.getProductsBySexo(this.paraSexo)
       .subscribe(
         (products) => {
         this.products = products;

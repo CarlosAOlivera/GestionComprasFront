@@ -36,7 +36,7 @@ selectedProduct: any;
 
   loadProducts(): void {
     if (this.paraSexo) {
-    this.searchService.searchProducts(this.paraSexo)
+    this.searchService.getProducts(this.paraSexo)
       .subscribe(
         (products) => {
         this.products = products;
@@ -49,7 +49,7 @@ selectedProduct: any;
   }
 
   loadMostSearchedProducts(): void {
-    this.searchService.getMostSearchedProducts()
+    this.searchService.getMostSearchedProducts(this.paraSexo)
       .subscribe(
         (products) => {
           this.products = products;
