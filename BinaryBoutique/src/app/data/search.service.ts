@@ -8,24 +8,25 @@ import { Product } from './product.model';
 })
 
 export class SearchService {
-  apiUrl = 'https://localhost:5101';
+  private apiUrl = 'https://localhost:5101/api/Producto';
 
   constructor(private http: HttpClient) {}
 
-  getProducts(query: string): Observable<Product[]> {
-    const url = `${this.apiUrl}/Product/Search`;
-    return this.http.get<Product[]>(`${this.apiUrl}/Producto/Search`,{params: {query} });
+ 
+  getMostSearchedProducts(): Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.apiUrl}/GetMasBuscados`);
   }
 
-  getMostSearchedProducts(paraSexo: string): Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.apiUrl}/Producto/GetMasBuscados/${paraSexo}`);
+  getProductsByGender(paraSexo: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/GetBySexo/${paraSexo}`);
   }
 
-  //getMostSearchedProducts(): Observable<Product[]>{
-  //  return this.http.get<Product[]>(`${this.apiUrl}/Producto/GetMasBuscados`);
-  //}
-
-  getProductsBySexo(sexo: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/Producto/GetBySexo/${sexo}`);
+  searchProductByName(name: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/GetByName/${name}`);
   }
+
+  getByName(name: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/GetByName/${name}`);
+  }
+
 }

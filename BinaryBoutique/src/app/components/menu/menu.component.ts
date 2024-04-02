@@ -21,7 +21,7 @@ export class MenuComponent {
 
   onSearch(): void {
     if (this.searchQuery) {
-      this.searchService.getProducts(this.searchQuery).subscribe({
+      this.searchService.getByName(this.searchQuery).subscribe({
         next: (result) => {
           // Ahora pasamos los resultados de búsqueda usando el estado del router
           this.router.navigate(['/search-results'], { state: { searchResults: result } });

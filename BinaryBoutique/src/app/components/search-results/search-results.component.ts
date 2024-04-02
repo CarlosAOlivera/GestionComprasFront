@@ -34,7 +34,7 @@ export class SearchResultsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       const query = params['q'];
       if (query) {
-        this.searchService.getProducts(query).subscribe((result) => {
+        this.searchService.getByName(query).subscribe((result) => {
           this.products = result;
         }, error => {
           console.error('Error al buscar productos', error);

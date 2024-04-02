@@ -34,7 +34,7 @@ selectedProduct: any;
     this.loadMostSearchedProducts()
   }
 
-  loadProducts(): void {
+  /*loadProducts(): void {
     if (this.paraSexo) {
     this.searchService.getProducts(this.paraSexo)
       .subscribe(
@@ -46,10 +46,10 @@ selectedProduct: any;
       }
       );
     }  
-  }
+  }*/
 
   loadMostSearchedProducts(): void {
-    this.searchService.getMostSearchedProducts(this.paraSexo)
+    this.searchService.getMostSearchedProducts()
       .subscribe(
         (products) => {
           this.products = products;
