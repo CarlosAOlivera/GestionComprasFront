@@ -8,7 +8,7 @@ import { Product } from './product.model';
 })
 
 export class SearchService {
-  private apiUrl = 'http://localhost:5101/v1/api/Producto';
+  private apiUrl = 'http://localhost:5101/api/v1/Producto';
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +27,10 @@ export class SearchService {
 
   getByName(name: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}/GetByName/${name}`);
+  }
+
+  getByColor(color: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/GetByColor/${color}`);
   }
 
 }
