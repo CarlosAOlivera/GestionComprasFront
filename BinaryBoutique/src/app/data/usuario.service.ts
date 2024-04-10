@@ -1,48 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { IUsuario } from './IUsuario';
-import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
+  private apiUrl = 'http://localhost:5101/api/Usuario';
 
   constructor(private http: HttpClient) { }
 
-  Guardar(Usuario: IUsuario) {
-    console.log('Antes del servicio ', Usuario)  
-    return this.http.post('https://localhost:5101/Usuario/Guardar', Usuario);
+  Guardar(usuario: IUsuario) {
+    return this.http.post(`${this.apiUrl}/Guardar`, usuario);
   }
 
+  // Make sure to correct all methods similar to the above
   Login(data: any) {
-    console.log('Antes del servicio ', data)  
-    return this.http.post('https://localhost:5101/Usuario/Login', data);
+    return this.http.post(`${this.apiUrl}/Login`, data);
   }
 
-  GetWeather(): Promise<any> {
-    return this.http.get<any>('https://localhost:5101/WeatherForecast/Get').toPromise();    
-  } 
-
-  UpdateUsuario(Usuario: IUsuario): Observable<any> {    
-    return this.http.put('https://localhost:5101/Usuario/UpdateUsuario', Usuario);
+  UpdateUsuario(usuario: IUsuario): Observable<any> {
+    return this.http.put(`${this.apiUrl}/UpdateUsuario`, usuario);
   }
 
-  DeleteUsuario(UsuarioId: Number): Observable<any> {    
-    return this.http.delete('https://localhost:5101/Usuario/DeleteUsuario'+  "/" + UsuarioId);
+  DeleteUsuario(usuarioId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/DeleteUsuario/${usuarioId}`);
   }
 
   GetAllUsuarios(): Promise<any> {
-    return this.http.get<any>('https://localhost:5101/Usuario/GetAllUsuarios').toPromise();    
-  } 
-
-  GetUsuarioByLastNames(lastNames: string): Observable<any> {    
-    return this.http.get('https://localhost:5101/Usuario/GetUsuarioByLastNames'+  "/" + lastNames);
+    return this.http.get<any>(`${this.apiUrl}/GetAllUsuarios`).toPromise();
   }
 
-  GetUsuarioById(idUsuario: number): Observable<any> { 
-    console.log("Capa services / GetUsuarioById con el id " + idUsuario);   
-    return this.http.get('https://localhost:5101/Usuario/GetUsuarioById'+  "/" + idUsuario);
+  GetUsuarioByLastNames(lastNames: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/GetUsuarioByLastNames/${lastNames}`);
+  }
+
+  GetUsuarioById(idUsuario: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/GetUsuarioById/${idUsuario}`);
+  }
+
+  checkEmail(email: string): Observable<boolean> {
+    const params = new HttpParams().set('email', email);
+    return this.http.get<boolean>(`${this.apiUrl}/check-email`, { params });
   }
 }
