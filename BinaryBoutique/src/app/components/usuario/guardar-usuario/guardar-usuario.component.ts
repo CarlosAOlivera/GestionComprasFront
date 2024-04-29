@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUsuario } from '../../../data/IUsuario';
-import { UsuarioService } from '../../../data/usuario.service';
+import { UsuarioService } from '../../../services/usuario.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';

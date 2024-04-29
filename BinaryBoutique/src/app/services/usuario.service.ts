@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { IUsuario } from './IUsuario';
+import { IUsuario } from '../data/IUsuario';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  Guardar(usuario: IUsuario) {
-    return this.http.post(`${this.apiUrl}/Guardar`, usuario);
+  Guardar(usuario: IUsuario): Observable<IUsuario> {
+    return this.http.post<IUsuario>(`${this.apiUrl}/Guardar`, usuario);
   }
 
   // Make sure to correct all methods similar to the above
@@ -43,5 +43,9 @@ export class UsuarioService {
   checkEmail(email: string): Observable<boolean> {
     const params = new HttpParams().set('email', email);
     return this.http.get<boolean>(`${this.apiUrl}/check-email`, { params });
+  }
+
+  confirmEmail(token: string, email: string): Observable<any> {
+   return this.http.get(`${this.apiUrl}/ConfirmarCorreo`, { params: { token, email }});
   }
 }

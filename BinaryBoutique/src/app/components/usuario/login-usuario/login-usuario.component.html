@@ -21,7 +21,7 @@
 
           <mat-form-field appearance="outline" class="full-width-input">
             <mat-label>Contraseña</mat-label>
-            <input matInput [type]="password" formControlName="Contrasena" placeholder="Mínimo 5 caracteres">
+            <input matInput type="password" formControlName="Contrasena" placeholder="Mínimo 5 caracteres">
             <mat-error *ngIf="form['Contrasena'].touched && form['Contrasena'].errors">
               <div *ngIf="form['Contrasena']?.errors?.['required']">La Contraseña es requerido</div>
               <div *ngIf="form['Contrasena']?.errors?.['minlength']">La Contraseña debe ser mínimo de 5 caracteres</div>   

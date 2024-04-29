@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../data/cart.service';
-import { ToastrService } from 'ngx-toastr';
-import { ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CheckoutDialogComponent } from '../checkout-dialog/checkout-dialog.component';
+
 
 @Component({
   selector: 'app-carrito',
@@ -12,9 +13,13 @@ import { Router } from '@angular/router';
 export class CarritoComponent implements OnInit {
   items: any[] = [];
   totalPrice: number = 0;
-  router: any;
 
-constructor(private cartService: CartService, private cd: ChangeDetectorRef) { }
+constructor(
+  private cartService: CartService, 
+  private cd: ChangeDetectorRef, 
+  private dialog: MatDialog,
+  private router: Router
+) { }
 
   ngOnInit() {
     console.log(this.items);
@@ -48,7 +53,12 @@ constructor(private cartService: CartService, private cd: ChangeDetectorRef) { }
   }
 
   proceedToCheckout(): void {
-    this.router.navigate(['/checkout']);
+    //this.router.navigate(['/checkout']);
+    
+    const dialogRef = this.dialog.open(CheckoutDialogComponent, {
+      width: '500px', 
+      backdropClass: 'dialog-backdrop'
+    });
   }
 
   saveForLater(item: any): void {

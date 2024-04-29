@@ -1,7 +1,7 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import { CartService } from '../../data/cart.service';
+import { CartService } from '../../services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 
 

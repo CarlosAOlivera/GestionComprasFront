@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { SearchService } from '../../data/search.service';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-menu',

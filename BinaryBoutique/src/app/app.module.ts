@@ -28,6 +28,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { GeneroComponent } from './components/genero/genero.component';
+import { ConfirmacionRegistroComponent } from './components/confirmacion-registro/confirmacion-registro.component';
+import { ConfirmarCorreoComponent } from './components/confirmar-correo/confirmar-correo.component';
+import { CheckoutDialogComponent } from './components/checkout-dialog/checkout-dialog.component';
+import { CheckoutComponent } from './components/checkout-component/checkout.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,10 @@ import { GeneroComponent } from './components/genero/genero.component';
     SearchResultsComponent,
     FooterComponent,
     GeneroComponent,
+    ConfirmacionRegistroComponent,
+    ConfirmarCorreoComponent,
+    CheckoutDialogComponent,
+    CheckoutComponent,
   ],
   imports: [
     CommonModule,
