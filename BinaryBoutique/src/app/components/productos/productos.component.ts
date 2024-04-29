@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../data/product.model';
-import { SearchService } from '../../data/search.service';
+import { SearchService } from '../../services/search.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductDetailDialogComponent } from '../product-detail-dialog/product-detail-dialog.component';
 

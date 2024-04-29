@@ -1,0 +1,69 @@
+/* Form heading */
+.form-heading {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* Form container */
+.form-container {
+    max-width: 600px; /* Adjust based on your layout */
+    margin: 0 auto;
+}
+
+/* Input group */
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Input box */
+.input-box {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.input-box:last-child {
+    margin-right: 0;
+}
+
+/* Input field */
+.input-box input[type="text"],
+.input-box input[type="email"],
+.input-box input[type="date"],
+.input-box input[type="time"],
+.input-box select,
+.input-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Label */
+.input-box label {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Textarea */
+.input-box textarea {
+    height: 100px;
+}
+
+/* Submit button (if applicable) */
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}

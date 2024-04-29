@@ -1,12 +1,26 @@
+<h1>
+  Carrito de Compras
+</h1>
 <section *ngIf="items.length > 0; else emptyCart">
-  <div class="card" *ngFor="let item of items">
-    <img class="card-img-left" [src]="item.product.urlImagen" alt="{{ item.nombre }}">
-    <aside class="card-body">  
+  <div class="card" *ngFor="let item of items; trackBy: trackByProductId">
+    <img class="card-img-left" [src]="item.product.urlImagen" alt="{{ item.product.nombre }}">
+
+    <aside class="card-content">  
       <h5 class="card-title">Producto: {{ item.product.nombre }}</h5>
-      <p class="card-text">Cantidad: {{ item.selectedQuantity }}</p>
+      <p class="card-text">Cantidad: 
+        <select [(ngModel)]="item.selectedQuantity" (change)="updateQuantity(item, item.selectedQuantity)">
+          <option *ngFor="let qty of [1, 2, 3, 4, 5]" [value]="qty">{{ qty }}</option>
+        </select>
+      </p>
       <p class="card-text">Precio unitario: ${{ item.product.valor }}</p>
-      <p class="card-text">Precio total: ${{ item.selectedQuantity * item.product.valor }}</p>
+      <p class="card-text">Precio total: ${{ item.selectedQuantity * item.product.valor }}</p>  
+
+      <section class="card-actions">
+        <a href="#" class="card-action" (click)="removeItem(item)">{{'Borrar' }} | </a>
+        <a href="#" class="card-action" (click)="saveForLater(item); $event.preventDefault()">{{'Guardar para Despues'}}</a>
+      </section>
     </aside>
+
   </div>
 </section>
 
@@ -18,4 +32,10 @@
   <aside class="total">
     <p>Total: ${{ totalPrice }}</p>
   </aside>
+  <button mat-raised-button class="btn btn-primary" id="checkout" (click)="proceedToCheckout()" >Comprar</button>
+</section>
+
+
+<section class="card-buttons">
+  <button mat-raised-button class="btn btn-primary" id="clearCart" (click)="clearCart()">Vaciar Carrito</button>
 </section>

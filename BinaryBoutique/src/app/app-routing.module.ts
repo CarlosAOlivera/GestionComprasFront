@@ -9,8 +9,10 @@ import { MujerComponent } from './components/mujer/mujer.component';
 import { HombreComponent } from './components/hombre/hombre.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { ConfirmarCorreoComponent } from './components/confirmar-correo/confirmar-correo.component';
 
 const routes: Routes = [
+  { path: 'confirmar-correo', component: ConfirmarCorreoComponent},
   { path: 'guardar-usuario', component: GuardarUsuarioComponent },
   { path: 'login-usuario', component: LoginUsuarioComponent },
   { path: 'admin', component: AdminDashboardComponent },

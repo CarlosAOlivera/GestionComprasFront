@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../data/cart.service';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import { CartService } from '../../services/cart.service';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CheckoutDialogComponent } from '../checkout-dialog/checkout-dialog.component';
+
 
 @Component({
   selector: 'app-carrito',
@@ -8,16 +12,33 @@ import { CartService } from '../../data/cart.service';
 })
 export class CarritoComponent implements OnInit {
   items: any[] = [];
-  totalPrice: number = 0
+  totalPrice: number = 0;
 
-  constructor(private cartService: CartService) { }
+constructor(
+  private cartService: CartService, 
+  private cd: ChangeDetectorRef, 
+  private dialog: MatDialog,
+  private router: Router
+) { }
 
   ngOnInit() {
-    this.cartService.getItems().subscribe((items: any[]) => {
+    console.log(this.items);
+    this.calculateTotalPrice();
+    this.cartService.cartItems$.subscribe((items: any[]) => {
+      console.log('Items before rendering:', items);
       console.log('Items en el carrito:', items);
       this.items = items;
-      this.calcularTotal();
+      this.calculateTotalPrice();
+      this.cd.detectChanges();
     });
+  }
+
+  updateQuantity(item: any, newQuantity: number): void {
+    this.cartService.updateItemQuantity(item.product.idProducto, newQuantity);
+  }                                                                                                                                                             
+
+  removeItem(item: any): void {
+    this.cartService.removeItem(item.product.idProducto);
   }
 
   calcularTotal(): void {
@@ -26,6 +47,35 @@ export class CarritoComponent implements OnInit {
     return total + precioTotalPorProducto;
     }, 0);
   }
+
+  calculateTotalPrice() {
+    this.totalPrice = this.cartService.calculateCartTotal();
+  }
+
+  proceedToCheckout(): void {
+    //this.router.navigate(['/checkout']);
+    
+    const dialogRef = this.dialog.open(CheckoutDialogComponent, {
+      width: '500px', 
+      backdropClass: 'dialog-backdrop'
+    });
+  }
+
+  saveForLater(item: any): void {
+    this.cartService.saveItemsForLater(item.product.idProducto);
+  }
+
+  clearCart() {
+    this.cartService.clearCart();
+  }
+  checkout() {
+    alert('Compra realizada con éxito');
+    this.cartService.clearCart();
+  }
+
+  trackByProductId(index: number, item: any): any {
+  return item.product.idProducto;
+}
 
   // ... otros métodos
 }
