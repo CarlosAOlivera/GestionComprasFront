@@ -21,16 +21,12 @@ export class SearchService {
     return this.http.get<Product[]>(`${this.apiUrl}/GetBySexo/${paraSexo}`);
   }
 
-  searchProductByName(name: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/GetByName/${name}`);
-  }
-
   getByName(name: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}/GetByName/${name}`);
   }
 
-  getByColor(color: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/GetByColor/${color}`);
+  search(query: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/Search`, {params: {query}});
   }
 
 }
