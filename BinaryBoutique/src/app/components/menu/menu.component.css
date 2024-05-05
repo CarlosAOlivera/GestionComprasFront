@@ -31,7 +31,6 @@ header {
 
 .search-bar {
     position: relative;
-    white-space: nowrap;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,11 +40,9 @@ header {
 
 .search-bar input[type="search"] {
     flex-grow: 1;
-    padding: 10px;
-    border: none;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-    margin-right: -46px; 
+    padding: 10px 100px 10px 10px;
+    border: 2px solid #ccc;
+    border-radius: 50px;
     height: 40px;
     box-sizing: border-box;     
     background-color: white;
@@ -53,19 +50,20 @@ header {
 
 .search-bar button {
     position: absolute;
-    right: 0;
-    background-color: white;
+    right: 10px;
+    background-color: transparent;
     border: none;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
     cursor: pointer;
-    padding: 10px 15px;
+    padding: 0px 12px;
     height: 40px;
     box-sizing: border-box;
+    color: #333;
+    font-size: 18px;
 }
 
-.search-bar input[type="search"]:focus + button,
+.search-bar input[type="search"]:focus,
 .search-bar button:focus {
+    outline: none;
     border-color: #0056b3
 }
 

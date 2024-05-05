@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { SearchService } from '../../services/search.service';
+import { Product } from '../../data/product.model';
 
 @Component({
   selector: 'app-menu',
@@ -11,6 +12,7 @@ import { SearchService } from '../../services/search.service';
 
 export class MenuComponent {
   searchQuery: string = '';
+  products: Product[] = [];
 
   constructor(
     private router: Router,
@@ -20,17 +22,10 @@ export class MenuComponent {
   }
 
   onSearch(): void {
-    if (this.searchQuery) {
-      this.searchService.getByName(this.searchQuery).subscribe({
-        next: (result) => {
-          // Ahora pasamos los resultados de búsqueda usando el estado del router
-          this.router.navigate(['/search-results'], { state: { searchResults: result } });
-        },
-        error: (error) => {
-          console.error('Error al buscar productos', error);
-        }
-      });
-    }
+      this.searchService.search(this.searchQuery).subscribe(
+        products => this.products = products,
+        error => console.error('Error al buscar productos', error)
+      );
   }
   
 
@@ -61,5 +56,5 @@ export class MenuComponent {
   /*    logout() {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
-}*/
+  }*/
 }

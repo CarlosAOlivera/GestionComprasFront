@@ -1,4 +1,4 @@
-<section *ngIf="products.length > 0; else noProductsTemplate" class="product-container">
+<section *ngIf="products && products.length > 0; else noProductsTemplate" class="product-container">
     <article class="product-card" *ngFor="let product of products">
       <img class="product-image" [src]="product.urlImagen" alt="{{ product.nombre }}">
       <header>

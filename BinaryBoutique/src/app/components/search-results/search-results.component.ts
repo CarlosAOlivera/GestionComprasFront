@@ -23,21 +23,29 @@ export class SearchResultsComponent implements OnInit {
   ) {}
 
   openDialog(product:Product): void {
-    this.Dialog.open(ProductDetailDialogComponent), {
-      Width: '800px',
+    const dialogRef = this.Dialog.open(ProductDetailDialogComponent, {
+      width: '800px',
       maxHeight: '90vh',
-      data: {                                                                                           product: product }
-    }
+      data: { product: product }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const query = params['q'];
+      const type = params['type'] || 'Name';
       if (query) {
-        this.searchService.getByName(query).subscribe((result) => {
-          this.products = result;
-        }, error => {
-          console.error('Error al buscar productos', error);
+        this.searchService.search(query).subscribe({
+          next: (result) => {
+            this.products = result;
+          }, 
+          error: (error) => {
+            console.error('Error al buscar productos', error);
+          }
         });
       }
     });
