@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Customer } from '../../data/Cliente';
 
-interface Customer {
-  fullName: string;
-  phoneNumber: string;
-  address: string;
-}
 
 @Component({
   selector: 'app-checkout-dialog',
@@ -13,24 +9,33 @@ interface Customer {
   styleUrls: ['./checkout-dialog.component.css']
 })
 export class CheckoutDialogComponent {
-  address: string = '';
+  cartItems: any[] = []; 
+  vat: number = 0;
+  shipping: number = 0;
+  total: number = 0;
+
+
   customer: Customer = {
     fullName: '',
     phoneNumber: '',
-    address: ''
-  };
+    address: {
+      street: '',
+      city: '',
+      state: '',
+      zip: '',
+    }
+  }
+  
 
-  constructor(
-    public dialogRef: MatDialogRef<CheckoutDialogComponent>,
-  ) {}
+  constructor(public dialogRef: MatDialogRef<CheckoutDialogComponent>) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   confirmPurchase(): void {
-    if (this.address && this.address.trim() !== '') {
-      this.dialogRef.close({address: this.address});
+    if (this.customer.address.street.trim() && this.customer.fullName.trim()) {
+      this.dialogRef.close(this.customer);
     } else {
       alert('Por favor, ingrese una dirección válida');
       console.log('La dirección no puede estar vacía.')

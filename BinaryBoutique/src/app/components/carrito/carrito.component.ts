@@ -56,7 +56,8 @@ constructor(
     //this.router.navigate(['/checkout']);
     
     const dialogRef = this.dialog.open(CheckoutDialogComponent, {
-      width: '500px', 
+      width: '1000px', 
+      height: '700px',
       backdropClass: 'dialog-backdrop'
     });
   }

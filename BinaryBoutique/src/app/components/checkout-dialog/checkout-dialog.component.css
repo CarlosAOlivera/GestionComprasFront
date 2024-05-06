@@ -1,69 +1,101 @@
-/* Form heading */
-.form-heading {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+/* Estilos generales del diálogo */
+.checkout-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: auto;
 }
 
-/* Form container */
-.form-container {
-    max-width: 600px; /* Adjust based on your layout */
-    margin: 0 auto;
+/* Estilos para el resumen de la orden */
+.order-summary {
+  flex: 1; /* Ocupa el espacio disponible, ajustado por el factor de crecimiento */
+  margin-right: 20px; /* Espacio entre las secciones */
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
 }
 
-/* Input group */
-.input-group {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+.order-summary h2 {
+  margin-bottom: 16px;
+  color: #333;
+  font-weight: 500;
 }
 
-/* Input box */
-.input-box {
-    flex: 1;
-    margin-right: 10px;
+.product-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.input-box:last-child {
-    margin-right: 0;
+.product-details img {
+  width: 64px;
+  height: 64px;
+  margin-right: 16px;
+  border-radius: 8px;
 }
 
-/* Input field */
-.input-box input[type="text"],
-.input-box input[type="email"],
-.input-box input[type="date"],
-.input-box input[type="time"],
-.input-box select,
-.input-box textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
+.details {
+  flex-grow: 1;
 }
 
-/* Label */
-.input-box label {
-    font-size: 0.9rem;
-    color: #333;
+.details h3 {
+  margin: 0;
+  color: #333;
+  font-weight: 400;
 }
 
-/* Textarea */
-.input-box textarea {
-    height: 100px;
+.details p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 14px;
 }
 
-/* Submit button (if applicable) */
-.submit-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1rem;
+.details span {
+  font-weight: bold;
 }
 
-.submit-button:hover {
-    background-color: #0056b3;
+.mat-divider {
+  margin-top: 10px;
+}
+
+.totals p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Estilos para la información de entrega */
+.delivery-info {
+  flex: 1; /* Ocupa el espacio disponible */
+  padding: 20px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+}
+
+.delivery-info h2 {
+  color: #333;
+  margin-bottom: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Botón de confirmar */
+.confirmar {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Estilos específicos de Angular Material */
+mat-dialog-content {
+  padding: 24px;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-form-field {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

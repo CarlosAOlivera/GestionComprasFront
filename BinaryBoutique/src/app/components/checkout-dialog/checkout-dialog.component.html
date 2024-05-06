@@ -1,60 +1,71 @@
-<!-- checkout-dialog.component.html -->
+<mat-dialog-content class="checkout-content">
+  <section class="order-summary">
+    <h2>Resumen de la Orden</h2>
+    <mat-list>
+      <!-- Iterar sobre los productos en el carrito -->
+      <mat-list-item *ngFor="let item of cartItems">
+        <div class="product-details">
+          <img matListAvatar [src]="item.image" alt="product">
+          <div class="details">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+            <span>{{ item.price | currency }}</span>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+    <div class="totals">
+      <p>IVA 14%: {{ vat | currency }}</p>
+      <p>Envío: {{ shipping | currency }}</p>
+      <p>Total: {{ total | currency }}</p>
+    </div>
+  </section>
 
-<main class="checkout-container">
-    <h2>Detalles de la orden</h2>
-    <!-- Aquí van los detalles de la orden como productos, precios, etc. -->
-    
-    <h4 id="h4">Para completar la orden, por favor complete esta información</h4>
-        <div class="inputGroup">
-            <div class="inputBox">
-                <input type="text" required="required" class="first-line">
-                <span>Nombre</span>
-            </div>
-            <div class="inputBox">
-                <input type="text" required="required" class="second-line">
-                <span>Apellidos</span>
-            </div>
-        </div>
-        <div class="inputGroup">
-            <div class="inputBox">
-                <input type="email" required="required" class="first-line">
-                <span>Email</span>
-            </div>
-            <span>Direccion de entrega</span>
-            <div class="inputBox">
-                <input type="text" required>
-                <br>
-                <textarea class="list" placeholder="Escribe tu direccion aqui..."></textarea>
-            </div>
-        </div>
-        <h4>Elija los 3 días y horarios que mejor funcionen para su entrega.</h4>
-        <p id="note">*Nota: Las fechas de entrega deben solicitarse al menos dos 
-            días antes de la fecha de entrega deseada.</p>
-        <div class="inputGroup">
-            <div class="inputBox">
-                <input type="date" required>
-                <input type="time" class="time" required>
-                <input type="date" required>
-                <input type="time" class="time" required>
-                <input type="date" required>
-                <input type="time" class="time" required>
-            </div>
-        </div>
-        
-        <div class="inputGroup">
-            <div class="inputBox">
-                <label for="property-type" class="property-type">Tipo de Propiedad:</label>
-                <select name="property-type" id="property-type">
-                    <option value="house">Casa</option>
-                    <option value="apartment">Apartmento</option>
-                    <option value="condo">Condo</option>
-                    <option value="other">Otro</option>
-                </select>
-            </div>
-        </div>
-        <div class="inputGroup">
-            <div class="inputBox">
-                <textarea class="delivery-instructions" 
-                placeholder="Instrucciones de entrega..."></textarea>
-            </div>
-        </div>
+  <section class="delivery-info">
+    <h2>Información de Entrega</h2>
+    <form>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre Completo</mat-label>
+        <input matInput placeholder="Nombre y Apellidos" [(ngModel)]="customer.fullName" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+          <mat-label>Número de Teléfono</mat-label>
+          <input matInput type="tel" placeholder="Ingrese su número de teléfono" [(ngModel)]="customer.phoneNumber" required>
+      </mat-form-field>
+
+      <section>
+          <mat-form-field appearance="fill">
+            <mat-label>Calle y número</mat-label>
+            <input matInput placeholder="Calle y número" [(ngModel)]="customer.address.street" required>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Ciudad</mat-label>
+            <input matInput placeholder="Ciudad" [(ngModel)]="customer.address.city" required>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Estado</mat-label>
+            <input matInput [(ngModel)]="customer.address.state" placeholder="Ingrese el estado" [(ngModel)]="customer.address.state" required>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Código Postal</mat-label>
+            <input matInput type="text" placeholder="Código Postal" [(ngModel)]="customer.address.zip" required>
+          </mat-form-field>         
+
+        <mat-form-field appearance="fill">
+          <mat-label>Instrucciones Adicionales</mat-label>
+          <textarea matInput placeholder="Cualquier detalle adicional..."></textarea>
+        </mat-form-field>
+      </section>
+    </form>
+  </section>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button color="primary" [mat-dialog-close]="true" class="confirmar">Confirmar Orden</button>
+</mat-dialog-actions>
+  
