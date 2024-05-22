@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Customer } from '../../data/Cliente';
-
+import { CheckoutService } from '../../services/checkout.service'
 
 @Component({
   selector: 'app-checkout-dialog',
@@ -14,7 +14,6 @@ export class CheckoutDialogComponent {
   shipping: number = 0;
   total: number = 0;
 
-
   customer: Customer = {
     fullName: '',
     phoneNumber: '',
@@ -24,10 +23,12 @@ export class CheckoutDialogComponent {
       state: '',
       zip: '',
     }
-  }
-  
+  };
 
-  constructor(public dialogRef: MatDialogRef<CheckoutDialogComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<CheckoutDialogComponent>,
+    private checkoutService: CheckoutService  // Inyectar el servicio de checkout
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -35,10 +36,21 @@ export class CheckoutDialogComponent {
 
   confirmPurchase(): void {
     if (this.customer.address.street.trim() && this.customer.fullName.trim()) {
-      this.dialogRef.close(this.customer);
+      this.checkoutService.completeOrder(this.customer)
+        .subscribe({
+          next: (response) => {
+            this.checkoutService.finalizePurchase(); // Limpia el carrito después de confirmar la orden
+            alert('¡Compra confirmada! Recibirás un email de confirmación.');
+            this.dialogRef.close(this.customer);
+          },
+          error: (error) => {
+            alert('Hubo un error al confirmar la compra.');
+            console.error('Error al confirmar la compra:', error);
+          }
+        });
     } else {
       alert('Por favor, ingrese una dirección válida');
-      console.log('La dirección no puede estar vacía.')
+      console.log('La dirección no puede estar vacía.');
     }
   }
 }

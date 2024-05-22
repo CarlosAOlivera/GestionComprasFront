@@ -1,68 +1,70 @@
 <mat-dialog-content class="checkout-content">
-  <section class="order-summary">
-    <h2>Resumen de la Orden</h2>
-    <mat-list>
-      <!-- Iterar sobre los productos en el carrito -->
-      <mat-list-item *ngFor="let item of cartItems">
-        <div class="product-details">
-          <img matListAvatar [src]="item.image" alt="product">
-          <div class="details">
-            <h3>{{ item.name }}</h3>
-            <p>{{ item.description }}</p>
-            <span>{{ item.price | currency }}</span>
+  <main class="checkout-container">
+    <section class="order-summary">
+      <h2>Resumen de la Orden</h2>
+      <mat-list>
+        <!-- Iterar sobre los productos en el carrito -->
+        <mat-list-item *ngFor="let item of cartItems">
+          <div class="product-details">
+            <img matListAvatar [src]="item.image" alt="product">
+            <div class="details">
+              <h3>{{ item.name }}</h3>
+              <p>{{ item.description }}</p>
+              <span>{{ item.price | currency }}</span>
+            </div>
           </div>
-        </div>
-        <mat-divider></mat-divider>
-      </mat-list-item>
-    </mat-list>
-    <div class="totals">
-      <p>IVA 14%: {{ vat | currency }}</p>
-      <p>Envío: {{ shipping | currency }}</p>
-      <p>Total: {{ total | currency }}</p>
-    </div>
-  </section>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+      <div class="totals">
+        <p>IVA 14%: {{ vat | currency }}</p>
+        <p>Envío: {{ shipping | currency }}</p>
+        <p>Total: {{ total | currency }}</p>
+      </div>
+    </section>
 
-  <section class="delivery-info">
-    <h2>Información de Entrega</h2>
-    <form>
-      <mat-form-field appearance="fill">
-        <mat-label>Nombre Completo</mat-label>
-        <input matInput placeholder="Nombre y Apellidos" [(ngModel)]="customer.fullName" required>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-          <mat-label>Número de Teléfono</mat-label>
-          <input matInput type="tel" placeholder="Ingrese su número de teléfono" [(ngModel)]="customer.phoneNumber" required>
-      </mat-form-field>
-
-      <section>
-          <mat-form-field appearance="fill">
-            <mat-label>Calle y número</mat-label>
-            <input matInput placeholder="Calle y número" [(ngModel)]="customer.address.street" required>
-          </mat-form-field>
-      
-          <mat-form-field appearance="fill">
-            <mat-label>Ciudad</mat-label>
-            <input matInput placeholder="Ciudad" [(ngModel)]="customer.address.city" required>
-          </mat-form-field>
-      
-          <mat-form-field appearance="fill">
-            <mat-label>Estado</mat-label>
-            <input matInput [(ngModel)]="customer.address.state" placeholder="Ingrese el estado" [(ngModel)]="customer.address.state" required>
-          </mat-form-field>
-      
-          <mat-form-field appearance="fill">
-            <mat-label>Código Postal</mat-label>
-            <input matInput type="text" placeholder="Código Postal" [(ngModel)]="customer.address.zip" required>
-          </mat-form-field>         
+    <section class="delivery-info">
+      <h2>Información de Entrega</h2>
+      <form>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre Completo</mat-label>
+          <input matInput placeholder="Nombre y Apellidos" [(ngModel)]="customer.fullName" required>
+        </mat-form-field>
 
         <mat-form-field appearance="fill">
-          <mat-label>Instrucciones Adicionales</mat-label>
-          <textarea matInput placeholder="Cualquier detalle adicional..."></textarea>
+            <mat-label>Número de Teléfono</mat-label>
+            <input matInput type="tel" placeholder="Ingrese su número de teléfono" [(ngModel)]="customer.phoneNumber" required>
         </mat-form-field>
-      </section>
-    </form>
-  </section>
+
+        <section>
+            <mat-form-field appearance="fill">
+              <mat-label>Calle y número</mat-label>
+              <input matInput placeholder="Calle y número" [(ngModel)]="customer.address.street" required>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill">
+              <mat-label>Ciudad</mat-label>
+              <input matInput placeholder="Ciudad" [(ngModel)]="customer.address.city" required>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill">
+              <mat-label>Estado</mat-label>
+              <input matInput [(ngModel)]="customer.address.state" placeholder="Ingrese el estado" [(ngModel)]="customer.address.state" required>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill">
+              <mat-label>Código Postal</mat-label>
+              <input matInput type="text" placeholder="Código Postal" [(ngModel)]="customer.address.zip" required>
+            </mat-form-field>         
+
+          <mat-form-field appearance="fill">
+            <mat-label>Instrucciones Adicionales</mat-label>
+            <textarea matInput placeholder="Cualquier detalle adicional..."></textarea>
+          </mat-form-field>
+        </section>
+      </form>
+    </section>
+  </main>
 </mat-dialog-content>
 
 <mat-dialog-actions>

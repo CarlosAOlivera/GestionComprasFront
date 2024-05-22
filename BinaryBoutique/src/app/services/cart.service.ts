@@ -5,6 +5,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
+  getTotal() {
+    throw new Error('Method not implemented.');
+  }
   private itemsInCartSubject = new BehaviorSubject<any[]>([]);
   public cartItems$ = this.itemsInCartSubject.asObservable();
   private itemsInCart: any[] = [];
