@@ -1,101 +1,79 @@
-/* Estilos generales del diálogo */
 .checkout-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: 800px;
-  margin: auto;
+  padding: 20px;
 }
 
-/* Estilos para el resumen de la orden */
-.order-summary {
-  flex: 1; /* Ocupa el espacio disponible, ajustado por el factor de crecimiento */
-  margin-right: 20px; /* Espacio entre las secciones */
+.checkout-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-summary, .delivery-info {
+  flex: 1;
   padding: 20px;
-  background-color: #f7f7f7;
-  border-radius: 8px;
+}
+
+.order-summary {
+  border-right: 1px solid #ccc;
 }
 
 .order-summary h2 {
-  margin-bottom: 16px;
-  color: #333;
-  font-weight: 500;
-}
-
-.product-details {
-  display: flex;
-  align-items: center;
+  font-size: 1.5em;
   margin-bottom: 10px;
 }
 
-.product-details img {
-  width: 64px;
-  height: 64px;
-  margin-right: 16px;
-  border-radius: 8px;
+.order-summary p {
+  margin: 8px 0;
+  font-size: 1.1em;
 }
 
-.details {
-  flex-grow: 1;
-}
-
-.details h3 {
-  margin: 0;
-  color: #333;
-  font-weight: 400;
-}
-
-.details p {
-  margin: 5px 0;
-  color: #666;
-  font-size: 14px;
-}
-
-.details span {
+.order-summary p span {
   font-weight: bold;
 }
 
-.mat-divider {
-  margin-top: 10px;
-}
-
-.totals p {
-  margin: 5px 0;
-  font-size: 16px;
-  color: #333;
-}
-
-/* Estilos para la información de entrega */
-.delivery-info {
-  flex: 1; /* Ocupa el espacio disponible */
-  padding: 20px;
-  background-color: #e9ecef;
-  border-radius: 8px;
+.order-summary p .total {
+  color: #007bff;
+  font-size: 1.2em;
 }
 
 .delivery-info h2 {
-  color: #333;
-  margin-bottom: 16px;
+  font-size: 1.5em;
+  margin-bottom: 20px;
 }
 
-mat-form-field {
+.delivery-info .form-group {
+  margin-bottom: 15px;
+}
+
+.delivery-info input, .delivery-info textarea {
   width: 100%;
-  margin-top: 16px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-/* Botón de confirmar */
-.confirmar {
-  margin-top: 20px;
-  width: 100%;
+.delivery-info textarea {
+  height: 100px;
 }
 
-/* Estilos específicos de Angular Material */
-mat-dialog-content {
-  padding: 24px;
-  color: rgba(0, 0, 0, 0.87);
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
 }
 
-mat-form-field {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+.dialog-actions .confirmar {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dialog-actions .confirmar:hover {
+  background-color: #0056b3;
 }

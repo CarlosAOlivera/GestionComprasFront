@@ -11,4 +11,4 @@ export class Product {
     valor: number = 0;
     esDeLosMasBuscados: boolean = false;
     paraSexo: string ='';
-    }
+}

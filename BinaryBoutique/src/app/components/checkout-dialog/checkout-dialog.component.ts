@@ -1,56 +1,58 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Customer } from '../../data/Cliente';
-import { CheckoutService } from '../../services/checkout.service'
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CartService } from '../../services/cart.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout-dialog',
   templateUrl: './checkout-dialog.component.html',
   styleUrls: ['./checkout-dialog.component.css']
 })
-export class CheckoutDialogComponent {
-  cartItems: any[] = []; 
-  vat: number = 0;
-  shipping: number = 0;
-  total: number = 0;
-
-  customer: Customer = {
-    fullName: '',
-    phoneNumber: '',
-    address: {
-      street: '',
-      city: '',
-      state: '',
-      zip: '',
-    }
-  };
+export class CheckoutDialogComponent implements OnInit {
+  orderSummary: { subtotal: number, iva: number, envio: number, total: number } = { subtotal: 0, iva: 0, envio: 0, total: 0 };
+  customerForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<CheckoutDialogComponent>,
-    private checkoutService: CheckoutService  // Inyectar el servicio de checkout
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private formBuilder: FormBuilder,
+    private cartService: CartService
+  ) {
+    this.customerForm = this.formBuilder.group({
+      fullName: ['', Validators.required],
+      phone: ['', Validators.required],
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zipCode: ['', Validators.required],
+      additionalInfo: ['']
+    });
+  }
+
+  ngOnInit(): void {
+    this.calculateOrderSummary();
+  }
+
+  calculateOrderSummary(): void {
+    this.orderSummary = this.cartService.getCartDetails();
+  }
+
+  confirmPurchase(): void {
+    if (this.customerForm.valid) {
+      const customerData = this.customerForm.value;
+      this.cartService.clearCart();
+      alert('¡Compra confirmada! Recibirás un email de confirmación.');
+      this.dialogRef.close(this.customerForm.value);
+    } else {
+      alert('Por favor, complete todos los campos requeridos.');
+    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  confirmPurchase(): void {
-    if (this.customer.address.street.trim() && this.customer.fullName.trim()) {
-      this.checkoutService.completeOrder(this.customer)
-        .subscribe({
-          next: (response) => {
-            this.checkoutService.finalizePurchase(); // Limpia el carrito después de confirmar la orden
-            alert('¡Compra confirmada! Recibirás un email de confirmación.');
-            this.dialogRef.close(this.customer);
-          },
-          error: (error) => {
-            alert('Hubo un error al confirmar la compra.');
-            console.error('Error al confirmar la compra:', error);
-          }
-        });
-    } else {
-      alert('Por favor, ingrese una dirección válida');
-      console.log('La dirección no puede estar vacía.');
-    }
+  cancelPurchase(): void {
+    this.dialogRef.close();
   }
 }
