@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GuardarUsuarioComponent } from './components/usuario/guardar-usuario/guardar-usuario.component';
@@ -32,6 +31,8 @@ import { ConfirmacionRegistroComponent } from './components/confirmacion-registr
 import { ConfirmarCorreoComponent } from './components/confirmar-correo/confirmar-correo.component';
 import { CheckoutDialogComponent } from './components/checkout-dialog/checkout-dialog.component';
 import { CheckoutComponent } from './components/checkout-component/checkout.component';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,9 @@ import { CheckoutComponent } from './components/checkout-component/checkout.comp
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
+    MatListModule,
+    MatDividerModule,
+
 
     ToastrModule.forRoot({
       timeOut: 3000, 

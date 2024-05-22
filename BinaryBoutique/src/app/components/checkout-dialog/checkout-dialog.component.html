@@ -1,60 +1,29 @@
-<!-- checkout-dialog.component.html -->
+<mat-dialog-content class="checkout-content">
+  <main class="checkout-container">
 
-<main class="checkout-container">
-    <h2>Detalles de la orden</h2>
-    <!-- Aquí van los detalles de la orden como productos, precios, etc. -->
+    <section class="order-summary">
+      <h2>Resumen de la Orden</h2>
+      <p>Subtotal: ${{ orderSummary.subtotal.toFixed(2) }}</p>
+      <p>IVA 14%: ${{ orderSummary.iva.toFixed(2) }}</p>
+      <p>Envío: ${{ orderSummary.envio.toFixed(2) }}</p>
+      <p>Total: ${{ orderSummary.total.toFixed(2) }}</p>
+    </section>
     
-    <h4 id="h4">Para completar la orden, por favor complete esta información</h4>
-        <div class="inputGroup">
-            <div class="inputBox">
-                <input type="text" required="required" class="first-line">
-                <span>Nombre</span>
-            </div>
-            <div class="inputBox">
-                <input type="text" required="required" class="second-line">
-                <span>Apellidos</span>
-            </div>
-        </div>
-        <div class="inputGroup">
-            <div class="inputBox">
-                <input type="email" required="required" class="first-line">
-                <span>Email</span>
-            </div>
-            <span>Direccion de entrega</span>
-            <div class="inputBox">
-                <input type="text" required>
-                <br>
-                <textarea class="list" placeholder="Escribe tu direccion aqui..."></textarea>
-            </div>
-        </div>
-        <h4>Elija los 3 días y horarios que mejor funcionen para su entrega.</h4>
-        <p id="note">*Nota: Las fechas de entrega deben solicitarse al menos dos 
-            días antes de la fecha de entrega deseada.</p>
-        <div class="inputGroup">
-            <div class="inputBox">
-                <input type="date" required>
-                <input type="time" class="time" required>
-                <input type="date" required>
-                <input type="time" class="time" required>
-                <input type="date" required>
-                <input type="time" class="time" required>
-            </div>
-        </div>
-        
-        <div class="inputGroup">
-            <div class="inputBox">
-                <label for="property-type" class="property-type">Tipo de Propiedad:</label>
-                <select name="property-type" id="property-type">
-                    <option value="house">Casa</option>
-                    <option value="apartment">Apartmento</option>
-                    <option value="condo">Condo</option>
-                    <option value="other">Otro</option>
-                </select>
-            </div>
-        </div>
-        <div class="inputGroup">
-            <div class="inputBox">
-                <textarea class="delivery-instructions" 
-                placeholder="Instrucciones de entrega..."></textarea>
-            </div>
-        </div>
+    <section class="delivery-info">
+      <h2>Información de Entrega</h2>
+      <form [formGroup]="customerForm">
+        <input formControlName="fullName" placeholder="Nombre y Apellidos">
+        <input formControlName="phone" placeholder="Ingrese su número de teléfono">
+        <input formControlName="street" placeholder="Calle y número">
+        <input formControlName="city" placeholder="Ciudad">
+        <input formControlName="state" placeholder="Ingrese el estado">
+        <input formControlName="zipCode" placeholder="Código Postal">
+        <textarea formControlName="additionalInfo" placeholder="Cualquier detalle adicional..."></textarea>
+      </form>
+    </section>
+  </main>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button color="primary" (click)="confirmPurchase()" class="confirmar">Confirmar Orden</button>
+</mat-dialog-actions>

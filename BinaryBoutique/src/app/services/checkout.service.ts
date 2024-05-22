@@ -8,9 +8,8 @@ import { CartService } from './cart.service';
 })
 export class CheckoutService {
   private apiUrl = 'http://localhost:5101/api/';
-  cartService: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cartService: CartService) { }
   
   completeOrder(addressData: any): Observable<any> {
     const orderDetails = {

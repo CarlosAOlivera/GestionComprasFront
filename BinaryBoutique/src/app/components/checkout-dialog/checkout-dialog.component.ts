@@ -1,39 +1,58 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-
-interface Customer {
-  fullName: string;
-  phoneNumber: string;
-  address: string;
-}
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CartService } from '../../services/cart.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout-dialog',
   templateUrl: './checkout-dialog.component.html',
   styleUrls: ['./checkout-dialog.component.css']
 })
-export class CheckoutDialogComponent {
-  address: string = '';
-  customer: Customer = {
-    fullName: '',
-    phoneNumber: '',
-    address: ''
-  };
+export class CheckoutDialogComponent implements OnInit {
+  orderSummary: { subtotal: number, iva: number, envio: number, total: number } = { subtotal: 0, iva: 0, envio: 0, total: 0 };
+  customerForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<CheckoutDialogComponent>,
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private formBuilder: FormBuilder,
+    private cartService: CartService
+  ) {
+    this.customerForm = this.formBuilder.group({
+      fullName: ['', Validators.required],
+      phone: ['', Validators.required],
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zipCode: ['', Validators.required],
+      additionalInfo: ['']
+    });
+  }
+
+  ngOnInit(): void {
+    this.calculateOrderSummary();
+  }
+
+  calculateOrderSummary(): void {
+    this.orderSummary = this.cartService.getCartDetails();
+  }
+
+  confirmPurchase(): void {
+    if (this.customerForm.valid) {
+      const customerData = this.customerForm.value;
+      this.cartService.clearCart();
+      alert('¡Compra confirmada! Recibirás un email de confirmación.');
+      this.dialogRef.close(this.customerForm.value);
+    } else {
+      alert('Por favor, complete todos los campos requeridos.');
+    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  confirmPurchase(): void {
-    if (this.address && this.address.trim() !== '') {
-      this.dialogRef.close({address: this.address});
-    } else {
-      alert('Por favor, ingrese una dirección válida');
-      console.log('La dirección no puede estar vacía.')
-    }
+  cancelPurchase(): void {
+    this.dialogRef.close();
   }
 }

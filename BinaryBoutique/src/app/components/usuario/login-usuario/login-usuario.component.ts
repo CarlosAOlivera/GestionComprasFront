@@ -1,11 +1,11 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IUsuario } from '../../../data/IUsuario';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../../../services/usuario.service';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { LoginViewModel } from '../../../models/login-view-model';
+
 
 @Component({
   selector: 'app-login-usuario',
@@ -15,36 +15,40 @@ import { Router } from '@angular/router';
 export class LoginUsuarioComponent implements OnInit {
   myForm!: FormGroup;    
   submitted = false; 
- 
+  emailValidator: any | string; 
   passwordValidator: any | string;
   loginError!: string;
   password!: string;
+  form: any;
+  model: LoginViewModel = { email: '', password: '' };
+  errorMessage: string = '';
 
   constructor(
+    private dialogRef: MatDialogRef<LoginUsuarioComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder, 
     private usuarioService: UsuarioService,
     private router: Router,
     private toastr: ToastrService ) { }
 
   ngOnInit(): void {
-    this.iniciarFormulario();
-    console.log('LoginUsuarioComponent ngOnInit');
+    this.myForm = this.formBuilder.group({
+      CorreoElectronico: ['', [Validators.required, Validators.email]],
+      Contrasena: ['', Validators.required]
+    });
   }
-
+    
   iniciarFormulario(){
     this.myForm = this.formBuilder.group({                
       CorreoElectronico: ['', [Validators.required, Validators.email, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/), Validators.minLength(5), Validators.maxLength(30)]],
       Contrasena: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
     });
   }
-  /*emailValidator(): any | string {
-    throw new Error('Method not implemented.');
-  }*/
 
-  get form(): { [key: string]: AbstractControl; }
-  {
-      return this.myForm.controls;
+  get contrasena() {
+    return this.myForm.get('Contrasena');
   }
+
 
   onReset(): void {
     this.submitted = false;
@@ -53,30 +57,29 @@ export class LoginUsuarioComponent implements OnInit {
 
   onSubmit() {    
     this.submitted = true;
-    console.log("Form value ", this.myForm.value);
-    this.loginError = '';
-
     if (this.myForm.invalid) {
-      console.log('Error');  
       this.toastr.error('Por favor, completa el formulario correctamente.');        
       return;
     }     
     
     this.usuarioService.Login(this.myForm.value).subscribe({
       next: (response: any) => {
-        console.log('response', response.result);               
         localStorage.setItem('token', response.result);
+        localStorage.setItem('username', response.nombre);
+        this.dialogRef.close();
         this.router.navigate(['/']);
       },
       error: (error: any) => {
-        if(error.status === 401) {
-          this.loginError = 'Correo electronico o contraseña incorrectos.';
-        } else {
-          this.loginError = 'Ocurrió un error al intentar iniciar sesión.';
-        }
+        this.loginError = 'Ocurrió un error al intentar iniciar sesión.';
         this.toastr.error(this.loginError);
-        console.error('Error: ', error);
       }                  
     });
+  }
+
+  closeDialogAndNavigate() {
+    this.dialogRef.close();
+    setTimeout(() => {
+      this.router.navigate(['/guardar-usuario']);
+    }, 500);
   }
 }

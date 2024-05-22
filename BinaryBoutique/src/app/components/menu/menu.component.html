@@ -8,22 +8,23 @@
         </a>
 
         <section class="logo">
-            <a class="navbar-brand" routerLink="/home-page">Moda Boutique</a>
+            <a class="navbar-brand" routerLink="/home-page">FullStack Fusion</a>
         </section>
 
         <section class="search-bar">
-            <form class="d-flex" (submit)="buscarProducto(searchQuery.value)">
-             <input type="search" #searchQuery placeholder="Buscar por nombre, color, talla, o descripción" (keyup.enter)="onSearch()">
-             <!--<button class="btn btn-primary" type="submit">🔍</button>-->
+            <form class="d-flex" (submit)="onSubmit($event)">
+             <input type="search" #searchQuery placeholder="Buscar por nombre, color, talla, o descripción" (input)="onSearch(searchQuery.value)">
             </form>
         </section>
 
         <section class="navbar-links">
             <ul>
-                <li><button routerLink="/hombre">Hombre</button></li>
-                <li><button routerLink="/mujer">Mujer</button></li>
-                <li><button routerLink="/carrito">Carrito</button></li>
-                <li><button routerLink="/login-usuario">Login</button></li>
+                <li><button mat-button routerLink="/hombre">Hombre</button></li>
+                <li><button mat-button routerLink="/mujer">Mujer</button></li>
+                <li><button mat-button routerLink="/carrito">Carrito</button></li>
+                <li *ngIf="!isLoggedIn"><button mat-button (click)="openLoginDialog()">Iniciar Sesión</button></li>
+                <li *ngIf="isLoggedIn">Hola, {{ username }}</li>
+                <li *ngIf="isLoggedIn"><button mat-button (click)="logout()">Cerrar sesión</button></li>
             </ul>
         </section>
     </nav>
