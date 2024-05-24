@@ -59,7 +59,13 @@ constructor(
     const dialogRef = this.dialog.open(CheckoutDialogComponent, {
       width: '1000px', 
       height: '700px',
-      backdropClass: 'dialog-backdrop'
+      backdropClass: 'dialog-backdrop',
+      data: {
+        subtotal: this.totalPrice,
+        tax: this.tax,
+        deliveryCost: this.deliveryCost,
+        total: this.totalWithTaxAndDelivery
+      }
     });
   }
 

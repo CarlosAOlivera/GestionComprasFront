@@ -11,6 +11,7 @@ export class CartService {
   private itemsSavedForLater: any[] = [];
   private itemsSavedForLaterSubject = new BehaviorSubject<any[]>(this.itemsSavedForLater);
   private itemsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public items$: Observable<any[]> = this.itemsSubject.asObservable();
   private items: any[] = [];
 
 
@@ -18,6 +19,16 @@ export class CartService {
 
   getCart(): Observable<any[]> {
     return this.itemsInCartSubject.asObservable();
+  }
+
+  getCartItems(): any[] {
+    return this.itemsSubject.getValue();
+  }
+
+  addItem(item: any): void {
+    const items = this.itemsSubject.getValue();
+    items.push(item);
+    this.itemsSubject.next(items);
   }
 
   getCartDetails(): any {

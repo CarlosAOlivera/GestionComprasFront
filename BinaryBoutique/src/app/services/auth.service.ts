@@ -4,7 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor() {}
+  private currentUser: any;
+
+  constructor() {
+    this.currentUser = {
+      email: 'usuario@example.com'
+    };
+  }
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
@@ -12,6 +18,7 @@ export class AuthService {
 
   getUsername(): string | null {
     return localStorage.getItem('username');
+    return this.currentUser;
   }
 
   logout(): void {

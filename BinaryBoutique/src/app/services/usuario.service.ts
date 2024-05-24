@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { IUsuario } from '../data/IUsuario';
 import { catchError } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,11 @@ export class UsuarioService {
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  getUsuarioEmail(): Observable<string> {
+    return this.http.get(`${this.apiUrl}/email`)
+      .pipe(map((response: any) => response.email));
   }
 
   checkEmail(email: string): Observable<boolean> {
