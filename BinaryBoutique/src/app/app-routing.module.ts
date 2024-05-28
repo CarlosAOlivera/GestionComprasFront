@@ -10,9 +10,11 @@ import { HombreComponent } from './components/hombre/hombre.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { ConfirmarCorreoComponent } from './components/confirmar-correo/confirmar-correo.component';
+import { CarouselComponent }  from './components/carousel/carousel.component';
 
 const routes: Routes = [
   { path: 'confirmar-correo', component: ConfirmarCorreoComponent},
+  { path: 'carousel', component: CarouselComponent},
   { path: 'guardar-usuario', component: GuardarUsuarioComponent },
   { path: 'login-usuario', component: LoginUsuarioComponent },
   { path: 'admin', component: AdminDashboardComponent },

@@ -1,79 +1,72 @@
+.product-image {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
 .checkout-content {
-  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .checkout-container {
   display: flex;
   justify-content: space-between;
-}
-
-.order-summary, .delivery-info {
-  flex: 1;
-  padding: 20px;
+  align-items: flex-start;
+  gap: 20px;
+  flex-grow: 1;
 }
 
 .order-summary {
+  flex: 1;
   border-right: 1px solid #ccc;
+  padding-right: 20px;
 }
 
-.order-summary h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
+.delivery-info {
+  flex: 2;
 }
 
-.order-summary p {
-  margin: 8px 0;
-  font-size: 1.1em;
+.delivery-info form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.order-summary p span {
-  font-weight: bold;
-}
-
-.order-summary p .total {
-  color: #007bff;
-  font-size: 1.2em;
-}
-
-.delivery-info h2 {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-}
-
-.delivery-info .form-group {
-  margin-bottom: 15px;
-}
-
-.delivery-info input, .delivery-info textarea {
+input, textarea {
   width: 100%;
   padding: 10px;
-  font-size: 1em;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.delivery-info textarea {
-  height: 100px;
 }
 
 .dialog-actions {
   display: flex;
   justify-content: flex-end;
-  padding: 20px;
+  margin-top: 20px;
 }
 
-.dialog-actions .confirmar {
-  padding: 10px 20px;
-  font-size: 1em;
+.confirmar {
   background-color: #007bff;
   color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.dialog-actions .confirmar:hover {
+.confirmar:hover {
   background-color: #0056b3;
 }
