@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { IUsuario } from '../data/IUsuario';
-import { catchError } from 'rxjs/operators'
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class UsuarioService {
   private apiUrl = 'http://localhost:5101/api/Usuario';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   Guardar(usuario: IUsuario): Observable<IUsuario> {
     return this.http.post<IUsuario>(`${this.apiUrl}/Guardar`, usuario)
@@ -64,8 +64,20 @@ export class UsuarioService {
   }
 
   getUsuarioEmail(): Observable<string> {
-    return this.http.get(`${this.apiUrl}/email`)
-      .pipe(map((response: any) => response.email));
+    const token = this.authService.getToken();
+    if (!token) {
+      console.error('Token not found');
+      return throwError('Token not found');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<string>(`${this.apiUrl}/email`, { headers })
+      .pipe(
+        map((response: any) => response.email),
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error fetching user email', error);
+          return throwError('Failed to fetch user email');
+        })
+      );
   }
 
   checkEmail(email: string): Observable<boolean> {
@@ -83,6 +95,23 @@ export class UsuarioService {
         catchError(this.handleError)
       );
   }
+
+  getClaims(): Observable<any> {
+    const token = this.authService.getToken();
+    if (!token) {
+        console.error('Token not found');
+        return throwError('Token not found');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.apiUrl}/claims`, { headers })
+        .pipe(
+            catchError((error: HttpErrorResponse) => {
+                console.error('Error fetching user claims', error);
+                return throwError('Failed to fetch user claims');
+            })
+        );
+}
+
 
   private handleError(error: HttpErrorResponse) {
     let userMessage = 'Something bad happened; please try again later.';

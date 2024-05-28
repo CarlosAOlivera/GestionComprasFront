@@ -18,7 +18,10 @@ export class AuthService {
 
   getUsername(): string | null {
     return localStorage.getItem('username');
-    return this.currentUser;
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 
   logout(): void {

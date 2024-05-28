@@ -1,3 +1,20 @@
+.product-image {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
 .checkout-content {
   height: 100%;
   display: flex;

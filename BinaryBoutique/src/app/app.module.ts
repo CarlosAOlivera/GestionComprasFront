@@ -33,6 +33,11 @@ import { CheckoutDialogComponent } from './components/checkout-dialog/checkout-d
 import { CheckoutComponent } from './components/checkout-component/checkout.component';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+
 
 @NgModule({
   declarations: [
@@ -54,6 +59,8 @@ import { MatDividerModule } from '@angular/material/divider';
     ConfirmarCorreoComponent,
     CheckoutDialogComponent,
     CheckoutComponent,
+    CarouselComponent,
+    ContactUsComponent,
   ],
   imports: [
     CommonModule,
@@ -72,6 +79,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     MatListModule,
     MatDividerModule,
+    CarouselModule,
 
 
     ToastrModule.forRoot({
@@ -84,7 +92,7 @@ import { MatDividerModule } from '@angular/material/divider';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }],
+  }, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 
 

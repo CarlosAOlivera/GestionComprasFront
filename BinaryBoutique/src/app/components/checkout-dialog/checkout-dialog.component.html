@@ -1,6 +1,18 @@
 <mat-dialog-content class="checkout-content">
   <main class="checkout-container">
 
+    <section *ngIf="cartItems.length > 0" class="cart-items">
+      <h2>Artículos en la Orden</h2>
+      <ul>
+        <li *ngFor="let item of cartItems">
+          <!--<img [src]="item.product.imageUrl" alt="{{item.product.nombre}}" class="product-image"> <br>-->
+          {{item.product.nombre}} <br>
+          Cantidad: {{item.selectedQuantity}} <br>
+          Precio: {{item.product.valor}} <br>
+        </li>
+      </ul>
+    </section>
+
     <section class="order-summary">
       <h2>Resumen de la Orden</h2>
       <p>Subtotal: ${{ orderSummary.subtotal.toFixed(2) }}</p>
@@ -14,6 +26,7 @@
       <form [formGroup]="customerForm">
         <input formControlName="firstName" placeholder="Nombre">
         <input formControlName="lastName" placeholder="Apellidos">
+        <input formControlName="email" placeholder="Correo Electrónico">
         <input formControlName="street" placeholder="Calle y número">
         <input formControlName="city" placeholder="Ciudad">
         <input formControlName="state" placeholder="Ingrese el estado">
@@ -27,4 +40,5 @@
 
 <mat-dialog-actions>
   <button mat-raised-button color="primary" class="btn btn-primary" (click)="confirmPurchase()" class="confirmar">Confirmar Orden</button>
+  <button mat-button color="warn" (click)="cancelPurchase()">Cancelar</button>
 </mat-dialog-actions>
