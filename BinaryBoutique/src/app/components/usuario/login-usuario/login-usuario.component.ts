@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { LoginViewModel } from '../../../models/login-view-model';
 
 
+
 @Component({
   selector: 'app-login-usuario',
   templateUrl: './login-usuario.component.html',
@@ -66,6 +67,9 @@ export class LoginUsuarioComponent implements OnInit {
       next: (response: any) => {
         localStorage.setItem('token', response.result);
         localStorage.setItem('username', response.nombre);
+        localStorage.setItem('email', this.myForm.value.CorreoElectronico);
+        this.toastr.success('Inicio de sesión exitoso.');
+        
         this.dialogRef.close();
         this.router.navigate(['/']);
       },

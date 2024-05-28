@@ -1,29 +1,44 @@
 <mat-dialog-content class="checkout-content">
   <main class="checkout-container">
 
+    <section *ngIf="cartItems.length > 0" class="cart-items">
+      <h2>Artículos en la Orden</h2>
+      <ul>
+        <li *ngFor="let item of cartItems">
+          <!--<img [src]="item.product.imageUrl" alt="{{item.product.nombre}}" class="product-image"> <br>-->
+          {{item.product.nombre}} <br>
+          Cantidad: {{item.selectedQuantity}} <br>
+          Precio: {{item.product.valor}} <br>
+        </li>
+      </ul>
+    </section>
+
     <section class="order-summary">
       <h2>Resumen de la Orden</h2>
       <p>Subtotal: ${{ orderSummary.subtotal.toFixed(2) }}</p>
-      <p>IVA 14%: ${{ orderSummary.iva.toFixed(2) }}</p>
-      <p>Envío: ${{ orderSummary.envio.toFixed(2) }}</p>
+      <p>IVA 11.5%: ${{ orderSummary.tax.toFixed(2) }}</p>
+      <p>Envío: ${{ orderSummary.deliveryCost.toFixed(2) }}</p>
       <p>Total: ${{ orderSummary.total.toFixed(2) }}</p>
     </section>
     
     <section class="delivery-info">
       <h2>Información de Entrega</h2>
       <form [formGroup]="customerForm">
-        <input formControlName="fullName" placeholder="Nombre y Apellidos">
-        <input formControlName="phone" placeholder="Ingrese su número de teléfono">
+        <input formControlName="firstName" placeholder="Nombre">
+        <input formControlName="lastName" placeholder="Apellidos">
+        <input formControlName="email" placeholder="Correo Electrónico">
         <input formControlName="street" placeholder="Calle y número">
         <input formControlName="city" placeholder="Ciudad">
         <input formControlName="state" placeholder="Ingrese el estado">
         <input formControlName="zipCode" placeholder="Código Postal">
-        <textarea formControlName="additionalInfo" placeholder="Cualquier detalle adicional..."></textarea>
+        <input formControlName="phone" placeholder="Ingrese su número de teléfono">
+        <textarea formControlName="deliveryInfo" placeholder="Cualquier detalle adicional para la entrega..."></textarea>
       </form>
     </section>
   </main>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-button color="primary" (click)="confirmPurchase()" class="confirmar">Confirmar Orden</button>
+  <button mat-raised-button color="primary" class="btn btn-primary" (click)="confirmPurchase()" class="confirmar">Confirmar Orden</button>
+  <button mat-button color="warn" (click)="cancelPurchase()">Cancelar</button>
 </mat-dialog-actions>
